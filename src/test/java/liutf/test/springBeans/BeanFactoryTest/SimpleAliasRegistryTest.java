@@ -6,7 +6,7 @@
  * @date 2015年5月14日 上午10:46:52 
  * @version 1.0.0 
  */
-package liutf.test.springBeans;
+package liutf.test.springBeans.BeanFactoryTest;
 
 import org.springframework.core.SimpleAliasRegistry;
 import org.springframework.util.StringUtils;

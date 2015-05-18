@@ -6,7 +6,9 @@
  * @date 2015年5月13日 上午11:19:40 
  * @version 1.0.0 
  */
-package liutf.test;
+package liutf.test.springCore.StringUtilsTest;
+
+import org.springframework.beans.factory.support.ReplaceOverride;
 
 /**
  * @description: TODO
@@ -44,11 +46,19 @@ public class TestMain {
 
 		// 6、测试startsWithIgnoreCase方法
 		String prefix = " A";
-		boolean b = StringUtils.startsWithIgnoreCase(
-				str, prefix);
+		// boolean b = StringUtils.startsWithIgnoreCase(str, prefix);
 
 		// System.out.println("rs-->"+rs);
-		System.out.println("b-->" + b);
+		// System.out.println("b-->" + b);
+
+		// 7.测试replace方法，debug查看原理
+		String inString = "abcabcabcabcdabcabcabcd";
+		String oldPattern = "ab";
+		String newPattern = "xy";
+
+		String outString = StringUtils
+				.replace(inString, oldPattern, newPattern);
+		System.out.println("outString-->" + outString);
 
 	}
 

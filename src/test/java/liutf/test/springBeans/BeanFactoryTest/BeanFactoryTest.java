@@ -6,7 +6,7 @@
  * @date 2015年5月15日 上午9:23:14 
  * @version 1.0.0 
  */
-package liutf.test.springBeans;
+package liutf.test.springBeans.BeanFactoryTest;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -30,7 +30,7 @@ public class BeanFactoryTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String path = "liutf/test/springBeans/BeanFactoryTest.xml";
+		String path = "liutf/test/springBeans/BeanFactoryTest/BeanFactoryTest.xml";
 		Resource resource = new ClassPathResource(path);
 		BeanFactory bf = new XmlBeanFactory(resource);
 		

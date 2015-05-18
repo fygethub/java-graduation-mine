@@ -6,10 +6,10 @@
  * @date 2015年5月13日 上午11:02:35 
  * @version 1.0.0 
  */
-package liutf.test;
+package liutf.test.springCore.StringUtilsTest;
 
 /**
- * @description: TODO
+ * @description: 测试对象是spring-core-3.2.3.RELEASE包中的org.springframework.util.StringUtils类
  * @author: liutf
  * @date: 2015年5月13日 上午11:02:35
  * @version: V1.0.0
@@ -128,5 +128,26 @@ public abstract class StringUtils {
 				.toLowerCase();
 		String lcSuffix = suffix.toLowerCase();
 		return lcStr.equals(lcSuffix);
+	}
+	
+	
+	public static String replace(String inString, String oldPattern, String newPattern) {
+		if (!hasLength(inString) || !hasLength(oldPattern) || newPattern == null) {
+			return inString;
+		}
+		StringBuilder sb = new StringBuilder();
+		int pos = 0; // our position in the old string
+		int index = inString.indexOf(oldPattern);
+		// the index of an occurrence we've found, or -1
+		int patLen = oldPattern.length();
+		while (index >= 0) {
+			sb.append(inString.substring(pos, index));
+			sb.append(newPattern);
+			pos = index + patLen;
+			index = inString.indexOf(oldPattern, pos);
+		}
+		sb.append(inString.substring(pos));
+		// remember to append any characters to the right of a match
+		return sb.toString();
 	}
 }

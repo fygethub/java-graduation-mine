@@ -6,7 +6,7 @@
  * @date 2015年5月15日 上午9:28:01 
  * @version 1.0.0 
  */
-package liutf.test.springBeans;
+package liutf.test.springBeans.BeanFactoryTest;
 
 /**
  * @description: TODO

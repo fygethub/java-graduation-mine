@@ -19,6 +19,6 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<bean id="myTestBean" class="liutf.test.springBeans.MyTestBean" />
+	<bean id="myTestBean" class="liutf.test.springBeans.BeanFactoryTest.MyTestBean" />
 
 </beans>
