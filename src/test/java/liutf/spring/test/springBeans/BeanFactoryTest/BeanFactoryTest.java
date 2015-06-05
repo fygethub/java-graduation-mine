@@ -30,9 +30,10 @@ public class BeanFactoryTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		String path = "liutf/test/springBeans/BeanFactoryTest/BeanFactoryTest.xml";
+		String path = "liutf/spring/test/springBeans/BeanFactoryTest/BeanFactoryTest.xml";
 		Resource resource = new ClassPathResource(path);
 		BeanFactory bf = new XmlBeanFactory(resource);
+		//BeanFactory bf = Beans.
 		
 		MyTestBean myTestBean = (MyTestBean) bf.getBean("myTestBean");
 		System.out.println(myTestBean.getTestStr());
