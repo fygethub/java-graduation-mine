@@ -148,11 +148,29 @@
 		</dependency>
 		<!-- quartz -->
 		<dependency>
-  			<groupId>opensymphony</groupId>
-  			<artifactId>quartz-all</artifactId>
-  			<version>1.6.3</version>
-  		</dependency>
+			<groupId>opensymphony</groupId>
+			<artifactId>quartz-all</artifactId>
+			<version>1.6.3</version>
+		</dependency>
 
+		<!-- JMS需要打jar包 -->
+		 <dependency>  
+            <groupId>org.springframework</groupId>  
+            <artifactId>spring-jms</artifactId>  
+            <version>3.2.3.RELEASE</version>  
+        </dependency>  
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
+			<version>5.9.0</version>
+		</dependency>
+		 <dependency>  
+            <groupId>javax.annotation</groupId>  
+            <artifactId>jsr250-api</artifactId>  
+            <version>1.0</version>  
+        </dependency> 	
+		
+		
 	</dependencies>
 	<build>
 		<finalName>sypro</finalName>

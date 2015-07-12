@@ -50,7 +50,9 @@ public class BufferedInputStreamTest {
 			}
 			System.out.println("程序开始执行时间:" + sdf.format(d));
 
-			f = new File("E:\\上传工具测试数据\\测试数据\\backup\\2015-06-03-16-14-28\\out.txt");
+			String psc = File.separator;
+			String filePath = new StringBuilder().append("E:").append(psc).append("out.txt").toString();
+			f = new File(filePath);
 			input = new FileInputStream(f);
 			// 指定文件带缓冲区的读取流且指定缓冲区大小为2KB
 			bis = new BufferedInputStream(input, 2 * SIZE);
@@ -60,7 +62,7 @@ public class BufferedInputStreamTest {
 			int tmp = 0;
 			while ((tmp = bis.read(byteArray)) != -1) {
 				strBuild.append(new String(byteArray, 0, tmp));
-//				strBuild.append(new String(byteArray));
+				// strBuild.append(new String(byteArray));
 				System.out.println("每次读取字节数量:" + tmp);
 				System.out.println("文件中剩余字节数:" + input.available());
 			}
@@ -97,5 +99,4 @@ public class BufferedInputStreamTest {
 			}
 		}
 	}
-
 }
