@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SyPro Init Database</title>
+<title>sypro_1 Init Database</title>
 <jsp:include page="inc.jsp"></jsp:include>
 <script type="text/javascript">
 	location.replace('${pageContext.request.contextPath}/initController/init');

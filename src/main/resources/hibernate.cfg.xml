@@ -15,6 +15,6 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://127.0.0.1:3306/qx</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.password">123456</property>
 	</session-factory>
 </hibernate-configuration>

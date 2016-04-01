@@ -26,7 +26,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.junit.Test;
 
 /**
  * @description: TODO
@@ -78,7 +77,7 @@ public class HttpClientTest {
 		}
 	}
 
-	@Test
+	//@Test
 	public void simplerMethod() throws ClientProtocolException, IOException {
 		// The fluent API relieves the user from having to deal with manual
 		// deallocation of system

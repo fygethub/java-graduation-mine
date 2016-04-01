@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SyPro</title>
+<title>sypro_1</title>
 <jsp:include page="inc.jsp"></jsp:include>
 <script type="text/javascript">
 	var index_tabs;
