@@ -51,7 +51,7 @@
 			href : '${pageContext.request.contextPath}/baseController/portal/about2'
 		}, {
 			id : 'p6',
-			title : 'EasyUI的QQ群',
+			title : 'EasyUI',
 			height : 200,
 			collapsible : true,
 			href : '${pageContext.request.contextPath}/baseController/portal/qun'
