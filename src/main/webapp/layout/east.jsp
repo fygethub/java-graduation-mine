@@ -26,6 +26,8 @@
 		<div id="layout_east_calendar"></div>
 	</div>
 	<div data-options="region:'center',border:false" style="overflow: hidden;">
-		
+		<div id="layout_east_onlinePanel" data-options="fit:true,border:false" title="用户在线列表">
+			<table id="layout_east_onlineDatagrid"></table>
+		</div>
 	</div>
 </div>

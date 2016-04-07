@@ -19,6 +19,6 @@
 			<a class="btn btn-primary btn-large" href="${pageContext.request.contextPath}/index.jsp" target="_blank"> 进入(里面有源码下载哦) </a>
 		</p>
 	</div>
-	
+	${pageContext.request.contextPath}
 </body>
 </html>

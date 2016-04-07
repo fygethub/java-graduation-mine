@@ -123,7 +123,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <session-timeout>15</session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>/link.jsp</welcome-file>
     <welcome-file>/index.jsp</welcome-file>
     <welcome-file>/init.jsp</welcome-file>
   </welcome-file-list>

@@ -23,7 +23,7 @@
 			} ]
 		});
 
-		userLoginCombobox = $('#userLoginCombobox').combobox({
+		/* userLoginCombobox = $('#userLoginCombobox').combobox({
 			url : '${pageContext.request.contextPath}/userController/loginCombobox',
 			valueField : 'name',
 			textField : 'name',
@@ -61,7 +61,7 @@
 				title : '最后修改时间',
 				width : 150
 			} ] ]
-		});
+		}); */
 
 		defaultUserInfoDialog = $('#defaultUserInfoDialog').show().dialog({
 			top : 0,
@@ -79,7 +79,7 @@
 				loginFun();
 			}
 		});
-		userLoginCombobox.combobox('textbox').keyup(function(event) {
+		/* userLoginCombobox.combobox('textbox').keyup(function(event) {
 			if (event.keyCode == '13') {
 				loginFun();
 			}
@@ -88,7 +88,7 @@
 			if (event.keyCode == '13') {
 				loginFun();
 			}
-		});
+		}); */
 	});
 	function loginFun() {
 		if (layout_west_tree) {//当west功能菜单树加载成功后再执行登录
@@ -127,7 +127,7 @@
 </script>
 <div id="loginDialog" title="用户登录" style="width: 330px; height: 220px; overflow: hidden; display: none;">
 	<div id="loginTabs" class="easyui-tabs" data-options="fit:true,border:false">
-		<div title="用户输入模式" style="overflow: hidden; padding: 10px;">
+		<div title="用户输入" style="overflow: hidden; padding: 10px;">
 			<form method="post">
 				<table class="table table-hover table-condensed">
 					<tr>
@@ -141,7 +141,7 @@
 				</table>
 			</form>
 		</div>
-		<div title="自动补全模式" style="overflow: hidden; padding: 10px;">
+		<!-- <div title="自动补全模式" style="overflow: hidden; padding: 10px;">
 			<form method="post">
 				<table class="table table-hover table-condensed">
 					<tr>
@@ -154,8 +154,8 @@
 					</tr>
 				</table>
 			</form>
-		</div>
-		<div title="数据表格模式" style="overflow: hidden; padding: 10px;">
+		</div> -->
+		<!-- <div title="数据表格模式" style="overflow: hidden; padding: 10px;">
 			<form method="post">
 				<table class="table table-hover table-condensed">
 					<tr>
@@ -168,33 +168,6 @@
 					</tr>
 				</table>
 			</form>
-		</div>
-	</div>
-</div>
-
-<div id="defaultUserInfoDialog" title="系统测试账号" style="width: 300px; height: 260px; overflow: hidden; display: none;">
-	<div class="well well-small" style="margin: 3px;">请大家不要随意更改系统默认账户的信息，如果想测试，请自己新建立用户进行测试</div>
-	<div class="well well-small" style="margin: 3px;">
-		<div>
-			<span class="badge">1</span>超管：孙宇/123456
-		</div>
-		<div>
-			<span class="badge badge-success">2</span>资源管理员：admin1/123456
-		</div>
-		<div>
-			<span class="badge badge-warning">3</span>角色管理员：admin2/123456
-		</div>
-		<div>
-			<span class="badge badge-important">4</span>用户管理员：admin3/123456
-		</div>
-		<div>
-			<span class="badge badge-info">5</span>数据源管理员：admin4/123456
-		</div>
-		<div>
-			<span class="badge badge-inverse">6</span>BUG管理员：admin5/123456
-		</div>
-		<div>
-			<span class="badge">7</span>来宾用户：guest/123456
-		</div>
+		</div>  -->
 	</div>
 </div>
