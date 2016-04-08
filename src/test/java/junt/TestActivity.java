@@ -1,13 +1,13 @@
 package junt;
 
 import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngines;
+import org.activiti.engine.ProcessEngineConfiguration;
 import org.junit.Test;
 
 public class TestActivity {
 	 /*使用代码创建工作流需要的23张表*/
 	
-	/*@Test
+/*	@Test
 	public void create(){
 		ProcessEngineConfiguration processEngineConfiguration=ProcessEngineConfiguration.createStandaloneProcessEngineConfiguration();
 		processEngineConfiguration.setJdbcDriver("com.mysql.jdbc.Driver");
@@ -18,13 +18,13 @@ public class TestActivity {
 		
 		ProcessEngine processEngine=processEngineConfiguration.buildProcessEngine();
 		System.out.println("processEngine"+processEngine);
-	}
-	*/
+	}*/
+	
 	@Test
 	public void create2(){
-		//ProcessEngineConfiguration processEngineConfiguration=ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("activiti-cfg.xml");
-		//ProcessEngine processEngine=processEngineConfiguration.buildProcessEngine();
-		ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
+		ProcessEngineConfiguration processEngineConfiguration=ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("activiti.cfg.xml");
+		ProcessEngine processEngine=processEngineConfiguration.buildProcessEngine();
+		//ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
 		
 		System.out.println(processEngine);
 	}
