@@ -112,7 +112,7 @@ public class HelloWorld {
 	/**完成我的任务*/
 	@Test
 	public void compliteMyPersonalTask(){
-		String taskId ="1202";
+		String taskId ="2704";
 		processEngine.getTaskService()
 						.complete(taskId);
 		System.out.println("Task Complete id is"+taskId);
@@ -162,6 +162,8 @@ public class HelloWorld {
 		
 	}
 	
+	
+	
 	/**删除流程定义 与流程定义相关的都是repositoryService*/
 	@Test
 	public void deleteProcessDefinition_(){
@@ -175,6 +177,7 @@ public class HelloWorld {
 		//map 当map key相同的情况下 后一次覆盖前一次
 		List<ProcessDefinition> list= processEngine.getRepositoryService()
 		 				.createProcessDefinitionQuery()
+		 				.processDefinitionKey("helloword")
 		 				.orderByProcessDefinitionVersion().asc()
 		 				.list();
 		 Map<String , ProcessDefinition> map=new LinkedHashMap<String, ProcessDefinition>();
@@ -196,5 +199,44 @@ public class HelloWorld {
 				System.out.println("###########################################");
 	  		}
 	  	}
+	}
+	
+	/**附加功能：删除流程定义（删除不同版本的流程定义*/
+	@Test
+	public void deleteProcessdefinitionByKey(){
+		//key definition 
+		String processDefinitionKey="helloword";
+		//select all processdefinition
+		List<ProcessDefinition> list=processEngine.getRepositoryService()
+										.createProcessDefinitionQuery()
+										.processDefinitionKey("helloword")
+										.list();
+		//遍历获取每个流程定义的部署ID
+		if(list != null && list.size()>0){
+			for(ProcessDefinition p:list){
+				String deploymentId=p.getDeploymentId();
+				processEngine.getRepositoryService()
+								.deleteDeployment(deploymentId,true);
+				System.out.println(deploymentId+"删除成功");
+			}
+		}
+	}
+	
+	
+	/**process is end */                
+	@Test
+	public void  isProcessEnd(){
+		String processInstanceId="2701";
+		ProcessInstance pInstance=	processEngine.getRuntimeService()
+						.createProcessInstanceQuery()
+						.processInstanceId(processInstanceId)
+						.singleResult();
+	
+		if(pInstance == null){
+			System.out.println("is end ");
+		}else {
+			System.out.println("is run");
+			System.out.println(pInstance.toString());
+		}
 	}
 }

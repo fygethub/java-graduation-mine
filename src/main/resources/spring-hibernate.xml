@@ -71,6 +71,7 @@
 		<property name="packagesToScan">
 			<list>
 				<value>sy.model</value>
+				<value>sy.fsdoor.model</value>
 			</list>
 		</property>
 

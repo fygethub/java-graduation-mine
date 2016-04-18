@@ -13,8 +13,8 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 	<!-- 每天晚上23点59分59秒修复一下数据库，修复白天大家测试后造成的数据错乱 -->
-	<task:scheduled-tasks>
+	<!-- <task:scheduled-tasks>
 		<task:scheduled ref="initServiceImpl" method="init" cron="59 59 23 * * ?" />
 	</task:scheduled-tasks>
-
+	 -->
 </beans>

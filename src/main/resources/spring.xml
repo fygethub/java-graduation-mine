@@ -23,6 +23,6 @@
 	</bean>
 
 	<!-- 自动扫描dao和service包(自动注入) -->
-	<context:component-scan base-package="sy.dao,sy.service" />
+	<context:component-scan base-package="sy.*" />
 
 </beans>

@@ -61,19 +61,17 @@ public class Tresource implements java.io.Serializable {
 	public String getId() {
 		return this.id;
 	}
-
-	public void setId(String id) {
-		this.id = id;
+	
+	@Column(name = "ICON", length = 100)
+	public String getIcon() {
+		return this.icon;
 	}
+	
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "TRESOURCETYPE_ID", nullable = false)
 	public Tresourcetype getTresourcetype() {
 		return this.tresourcetype;
-	}
-
-	public void setTresourcetype(Tresourcetype tresourcetype) {
-		this.tresourcetype = tresourcetype;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -82,8 +80,31 @@ public class Tresource implements java.io.Serializable {
 		return this.tresource;
 	}
 
-	public void setTresource(Tresource tresource) {
-		this.tresource = tresource;
+	@Column(name = "URL", length = 200)
+	public String getUrl() {
+		return this.url;
+	}
+	
+	@Column(name = "SEQ")
+	public Integer getSeq() {
+		return this.seq;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "trole_tresource", joinColumns = { @JoinColumn(name = "TRESOURCE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "TROLE_ID", nullable = false, updatable = false) })
+	public Set<Trole> getTroles() {
+		return this.troles;
+	}
+
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tresource")
+	public Set<Tresource> getTresources() {
+		return this.tresources;
+	}
+
+	@Column(name = "REMARK", length = 200)
+	public String getRemark() {
+		return this.remark;
 	}
 
 	@Column(name = "NAME", nullable = false, length = 100)
@@ -95,59 +116,43 @@ public class Tresource implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "REMARK", length = 200)
-	public String getRemark() {
-		return this.remark;
-	}
+	
 
+	public void setTresources(Set<Tresource> tresources) {
+		this.tresources = tresources;
+	}
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
-	@Column(name = "SEQ")
-	public Integer getSeq() {
-		return this.seq;
-	}
+	
 
 	public void setSeq(Integer seq) {
 		this.seq = seq;
 	}
 
-	@Column(name = "URL", length = 200)
-	public String getUrl() {
-		return this.url;
-	}
+	
 
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
-	@Column(name = "ICON", length = 100)
-	public String getIcon() {
-		return this.icon;
+	public void setTresource(Tresource tresource) {
+		this.tresource = tresource;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public void setIcon(String icon) {
 		this.icon = icon;
 	}
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "trole_tresource", joinColumns = { @JoinColumn(name = "TRESOURCE_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "TROLE_ID", nullable = false, updatable = false) })
-	public Set<Trole> getTroles() {
-		return this.troles;
-	}
-
+	
 	public void setTroles(Set<Trole> troles) {
 		this.troles = troles;
 	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tresource")
-	public Set<Tresource> getTresources() {
-		return this.tresources;
+	public void setTresourcetype(Tresourcetype tresourcetype) {
+		this.tresourcetype = tresourcetype;
 	}
-
-	public void setTresources(Set<Tresource> tresources) {
-		this.tresources = tresources;
-	}
-
 }

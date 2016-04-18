@@ -510,6 +510,38 @@ public class InitServiceImpl implements InitServiceI {
 		userCreateDatetimeChart.setTresource(chart);
 		resourceDao.saveOrUpdate(userCreateDatetimeChart);
 
+		/**流程菜单*/
+		
+		Tresource processtTresource=new Tresource();
+		processtTresource.setId("processTresource");
+		processtTresource.setName("流程管理");
+		processtTresource.setTresourcetype(menuType);
+		processtTresource.setUrl("");
+		processtTresource.setSeq(1);
+		processtTresource.setIcon("server_chart");
+		processtTresource.setTresource(xtgl);
+		
+		/**发起流程	*/
+		Tresource startProcessTresource=new Tresource();
+		startProcessTresource.setId("startProcessTresource");
+		startProcessTresource.setName("发起申请");
+		startProcessTresource.setTresourcetype(menuType);
+		startProcessTresource.setUrl("");
+		startProcessTresource.setSeq(1);
+		startProcessTresource.setIcon("");
+		startProcessTresource.setTresource(processtTresource);
+		
+		/**流程审批	*/
+		Tresource approveProcessTresource=new Tresource();
+		approveProcessTresource.setId("approveProcessTresource");
+		approveProcessTresource.setName("流程审批");
+		approveProcessTresource.setTresourcetype(menuType);
+		approveProcessTresource.setUrl("");
+		approveProcessTresource.setSeq(1);
+		approveProcessTresource.setIcon("");
+		approveProcessTresource.setTresource(processtTresource);
+		
+		
 		Tresource jeasyuiApi = new Tresource();
 		jeasyuiApi.setId("jeasyuiApi");
 		jeasyuiApi.setName("EasyUI API");
