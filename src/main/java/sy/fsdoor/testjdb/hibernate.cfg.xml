@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+       <session-factory>
+       
+        <!-- 数据库驱动名称 -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <!-- 数据库链接地址 -->
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/sypro</property>
+        <!-- 数据库用户名称 -->
+        <property name="hibernate.connection.username">root</property>
+        <!-- 数据库密码 -->
+        <property name="connection.password">123456</property>
+        <!-- 设置数据库连接池默认个数 -->
+        <property name="connection.pool_size">1</property>
+        <!-- 设置数据库SQL语言类型 -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <!-- 设置是否显示SQL语句-->
+        <property name="show_sql">true</property>
+        <!-- 设置是否格式化SQL语句 -->
+        <property name="format_sql">true</property>
+        <!-- 设置使用线程-->
+        <property name="current_session_context_class">thread</property>
+        <!-- 设置hibernate的映射文件-->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        
+        
+		<mapping  class="sy.fsdoor.model.Department"/>
+		<mapping  class="sy.fsdoor.model.Test_Role"/>
+		<mapping  class="sy.fsdoor.model.Test_Tree"/>
+		<mapping  class="sy.fsdoor.model.Test_User"/>
+         
+    </session-factory>
+</hibernate-configuration>
