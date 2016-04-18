@@ -7,11 +7,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sy.dao.BaseDaoI;
+import sy.dao.OnlineDaoI;
 import sy.model.Tonline;
 import sy.pageModel.DataGrid;
 import sy.pageModel.Online;
@@ -19,17 +20,10 @@ import sy.service.OnlineServiceI;
 
 @Service("onlineService")
 public class OnlineServiceImpl implements OnlineServiceI {
+	
+	@Resource
+	private OnlineDaoI onlineDao;
 
-	private BaseDaoI<Tonline> onlineDao;
-
-	public BaseDaoI<Tonline> getOnlineDao() {
-		return onlineDao;
-	}
-
-	@Autowired
-	public void setOnlineDao(BaseDaoI<Tonline> onlineDao) {
-		this.onlineDao = onlineDao;
-	}
 
 	@Override
 	public void saveOrUpdateTonlineByLoginNameAndIp(String loginName, String ip) {

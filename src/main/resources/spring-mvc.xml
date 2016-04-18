@@ -44,7 +44,8 @@
 			<bean class="sy.interceptors.SecurityInterceptor">
 				<!-- 不需要权限验证的地址 -->
 				<property name="excludeUrls">
-					<list>
+					<list>	
+						
 						<value>/initController/init</value><!-- 初始化数据库 -->
 						<value>/resourceController/tree</value><!-- 首页左侧功能菜单 -->
 						<value>/userController/reg</value><!-- 用户注册 -->

@@ -1,6 +1,7 @@
 package sy.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,17 +14,11 @@ import sy.service.OnlineServiceI;
 @Controller
 public class OnlineController {
 
+	@Resource
 	private OnlineServiceI onlineService;
 
-	public OnlineServiceI getOnlineService() {
-		return onlineService;
-	}
-
-	@Autowired
-	public void setOnlineService(OnlineServiceI onlineService) {
-		this.onlineService = onlineService;
-	}
-
+	
+	
 	@RequestMapping("/datagrid")
 	@ResponseBody
 	public DataGrid datagrid(Online online) {

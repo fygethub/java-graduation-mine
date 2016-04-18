@@ -2,11 +2,6 @@ package sy.pageModel;
 
 import java.util.Date;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
-import sy.util.JsonDateSerializer;
-
-
 public class Online implements java.io.Serializable {
 
 	private int page;
@@ -75,7 +70,7 @@ public class Online implements java.io.Serializable {
 		this.ip = ip;
 	}
 
-	@JsonSerialize(using = JsonDateSerializer.class)
+	
 	public Date getLogindatetime() {
 		return logindatetime;
 	}
