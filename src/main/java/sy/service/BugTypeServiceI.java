@@ -6,7 +6,7 @@ import sy.model.Tbugtype;
 
 /**
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public interface BugTypeServiceI {

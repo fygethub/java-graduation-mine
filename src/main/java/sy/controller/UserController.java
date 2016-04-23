@@ -28,7 +28,7 @@ import com.alibaba.fastjson.JSON;
 /**
  * 用户控制器
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 @Controller
@@ -65,9 +65,10 @@ public class UserController extends BaseController {
 			SessionInfo sessionInfo = new SessionInfo();
 			BeanUtils.copyProperties(u, sessionInfo);
 			sessionInfo.setIp(IpUtil.getIpAddr(request));
+			System.out.println(IpUtil.getIpAddr(request)+"...................");
 			sessionInfo.setResourceList(userService.resourceList(u.getId()));
 			session.setAttribute(ConfigUtil.getSessionInfoName(), sessionInfo);
-
+			System.out.println(sessionInfo.toString());
 			j.setObj(sessionInfo);
 		} else {
 			j.setMsg("用户名或密码错误！");

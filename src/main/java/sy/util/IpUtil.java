@@ -17,7 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 /**
  * IP工具类
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public class IpUtil {
@@ -45,7 +45,7 @@ public class IpUtil {
 		if (ip.split(",").length > 1) {
 			ip = ip.split(",")[0];
 		}
-		return getIpInfo(ip);
+		return ip;
 	}
 
 	/**

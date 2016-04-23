@@ -11,7 +11,7 @@ import org.hibernate.type.StandardBasicTypes;
  * 
  * java.util.Date类型，在使用[HOUR]函数的时候，报错信息[ORA-30076: 对析出来源无效的析出字段]
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public class Oracle10gDialect extends Oracle9iDialect {

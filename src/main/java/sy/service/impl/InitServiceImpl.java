@@ -465,7 +465,7 @@ public class InitServiceImpl implements InitServiceI {
 		Tresource wjgl = new Tresource();
 		wjgl.setId("wjgl");
 		wjgl.setName("文件管理");
-		wjgl.setTresourcetype(funType);
+		wjgl.setTresourcetype(menuType);
 		wjgl.setTresource(xtgl);
 		wjgl.setSeq(6);
 		wjgl.setUrl("");
@@ -475,17 +475,17 @@ public class InitServiceImpl implements InitServiceI {
 		Tresource wjglView = new Tresource();
 		wjglView.setId("wjglView");
 		wjglView.setName("浏览服务器文件");
-		wjglView.setTresourcetype(funType);
+		wjglView.setTresourcetype(menuType);
 		wjglView.setTresource(wjgl);
 		wjglView.setSeq(1);
 		wjglView.setUrl("/fileController/fileManage");
 		wjglView.setIcon("server_database");
-		resourceDao.saveOrUpdate(wjglView);
+		resourceDao.saveOrUpdate(wjgl);
 
 		Tresource wjglUpload = new Tresource();
 		wjglUpload.setId("wjglUpload");
 		wjglUpload.setName("上传文件");
-		wjglUpload.setTresourcetype(funType);
+		wjglUpload.setTresourcetype(menuType);
 		wjglUpload.setTresource(wjgl);
 		wjglUpload.setSeq(2);
 		wjglUpload.setUrl("/fileController/upload");
@@ -624,7 +624,7 @@ public class InitServiceImpl implements InitServiceI {
 	}
 
 	private void initUser() {
-		List<Tuser> l = userDao.find("from Tuser t where t.name in ('孙宇','admin1','admin2','admin3','admin4','admin5','guest')");
+		List<Tuser> l = userDao.find("from Tuser t where t.name in ('fydor','admin1','admin2','admin3','admin4','admin5','guest')");
 		if (l != null && l.size() > 0) {
 			for (Tuser user : l) {
 				userDao.delete(user);
@@ -633,7 +633,7 @@ public class InitServiceImpl implements InitServiceI {
 
 		Tuser admin = new Tuser();
 		admin.setId("0");
-		admin.setName("孙宇");
+		admin.setName("fydor");
 		admin.setPwd(MD5Util.md5("123456"));
 		admin.setCreatedatetime(new Date());
 		admin.getTroles().addAll(roleDao.find("from Trole t"));// 给用户赋予所有角色

@@ -11,7 +11,7 @@
 		<h1>SyPro基础权限演示系统</h1>
 		<div>
 			<ul>
-				<li>作者：孙宇</li>
+				<li>作者：fydor</li>
 				<li>前台由EasyUI1.3.3编写，后台是JAVA语言编写，应用框架spring mvc+hibernate4+maven</li>
 			</ul>
 		</div>

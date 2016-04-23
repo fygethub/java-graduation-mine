@@ -15,7 +15,7 @@ import sy.util.ConfigUtil;
 /**
  * 权限拦截器
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public class SecurityInterceptor implements HandlerInterceptor {

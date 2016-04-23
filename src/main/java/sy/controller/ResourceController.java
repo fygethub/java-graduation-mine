@@ -22,7 +22,7 @@ import sy.util.ConfigUtil;
 /**
  * 资源控制器
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 @Controller

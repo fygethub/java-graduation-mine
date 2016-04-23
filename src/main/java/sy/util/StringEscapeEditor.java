@@ -10,7 +10,7 @@ import org.springframework.web.util.JavaScriptUtils;
  * 
  * 用于防止XSS攻击
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public class StringEscapeEditor extends PropertyEditorSupport {

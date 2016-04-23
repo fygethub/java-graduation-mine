@@ -34,7 +34,7 @@ import sy.util.ConfigUtil;
 /**
  * 文件控制器
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 @Controller
@@ -60,10 +60,11 @@ public class FileController extends BaseController {
 		// 根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/
 		String rootUrl = request.getContextPath() + "/attached/";
 		
-		System.out.println("rootPath:"+rootPath+"/n"+"rootUrl:"+rootUrl);
+		System.out.println("rootPath:"+rootPath+"\n"+"rootUrl:"+rootUrl);
 		// 图片扩展名
 		String[] fileTypes = new String[] { "gif", "jpg", "jpeg", "png", "bmp" };
 
+	
 		String dirName = request.getParameter("dir");
 		if (dirName != null) {
 			if (!Arrays.<String> asList(new String[] { "image", "flash", "media", "file" }).contains(dirName)) {
@@ -76,9 +77,10 @@ public class FileController extends BaseController {
 				}
 				return m;
 			}
-			rootPath += dirName + "/";
-			rootUrl += dirName + "/";
+			rootPath += dirName + "\\";
+			rootUrl += dirName + "\\";
 			File saveDirFile = new File(rootPath);
+			System.out.println(saveDirFile);
 			if (!saveDirFile.exists()) {
 				saveDirFile.mkdirs();
 			}

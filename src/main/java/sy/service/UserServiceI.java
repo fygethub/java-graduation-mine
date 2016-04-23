@@ -10,7 +10,7 @@ import sy.pageModel.User;
 /**
  * 用户Service
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public interface UserServiceI {

@@ -19,7 +19,7 @@ import sy.service.BugTypeServiceI;
 /**
  * BUG管理控制器
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 @Controller

@@ -132,7 +132,7 @@
 				<table class="table table-hover table-condensed">
 					<tr>
 						<th>登录名</th>
-						<td><input name="name" type="text" placeholder="请输入登录名" class="easyui-validatebox" data-options="required:true" value="孙宇"></td>
+						<td><input name="name" type="text" placeholder="请输入登录名" class="easyui-validatebox" data-options="required:true" value="fydor"></td>
 					</tr>
 					<tr>
 						<th>密码</th>
@@ -146,7 +146,7 @@
 				<table class="table table-hover table-condensed">
 					<tr>
 						<th>登录名</th>
-						<td><input id="userLoginCombobox" name="name" type="text" placeholder="请输入登录名" class="easyui-validatebox" data-options="required:true" value="孙宇" style="height: 29px;"></td>
+						<td><input id="userLoginCombobox" name="name" type="text" placeholder="请输入登录名" class="easyui-validatebox" data-options="required:true" value="fydor" style="height: 29px;"></td>
 					</tr>
 					<tr>
 						<th>密码</th>
@@ -160,7 +160,7 @@
 				<table class="table table-hover table-condensed">
 					<tr>
 						<th>登录名</th>
-						<td><input id="userLoginCombogrid" name="name" type="text" placeholder="请输入登录名" class="easyui-validatebox" data-options="required:true" value="孙宇" style="height: 29px;"></td>
+						<td><input id="userLoginCombogrid" name="name" type="text" placeholder="请输入登录名" class="easyui-validatebox" data-options="required:true" value="fydor" style="height: 29px;"></td>
 					</tr>
 					<tr>
 						<th>密码</th>

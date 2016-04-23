@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * EasyUI DataGrid模型
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public class DataGrid implements java.io.Serializable {

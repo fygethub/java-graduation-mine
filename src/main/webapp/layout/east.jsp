@@ -1,14 +1,15 @@
 <%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <script type="text/javascript" charset="utf-8">
+
 	formatString = function(str) {
 		for ( var i = 0; i < arguments.length - 1; i++) {
 			str = str.replace("{" + i + "}", arguments[i + 1]);
 		}
 		return str;
 	};
-	$(function() {
+	$(document).ready(function(){
 		$('#layout_east_onlineDatagrid').datagrid({
-			url : '${pageContext.request.contextPath}/onlineController/datagrid',
+			url : '${pageContext.request.contextPath}/onlineController/datagrid', 
 			title : '',
 			iconCls : '',
 			fit : true,
@@ -74,7 +75,6 @@
 				$(this).calendar('moveTo', new Date());
 			}
 		});
-
 		$('#layout_east_onlinePanel').panel({
 			tools : [ {
 				iconCls : 'database_refresh',
@@ -82,10 +82,34 @@
 				}
 			} ]
 		});
-		
-		window.setInterval(function() {
-			$('#layout_east_onlineDatagrid').datagrid('load', {});
-		}, 1000 * 60 * 10);
+		$('#layout_east_onlineDatagrid').datagrid('reload');	
+		 window.setInterval(function() {
+			var $datagrid= $('#layout_east_onlineDatagrid')
+			var rows=$datagrid.datagrid('getRows');
+			$.ajax({
+				url:'${pageContext.request.contextPath}/onlineController/datagrid',
+				type:'POST',
+				success:function(data){
+					data=JSON.parse(data);
+					for(var i=0;i<data.rows.length;i++){
+						$datagrid.datagrid('updateRow',{index:i,row:{ip:data.rows[i].ip,loginname:data.rows[i].loginname}})
+						console.log("updata:"+i)
+					}
+					
+					while(rows.length > data.rows.length ){
+						$datagrid.datagrid('deleteRow',data.rows.length);
+						console.log('delete row:');
+					}
+				},
+				error:function(){
+					$.messager.show({
+						title:'messger',
+						msg:'error',
+					});
+				}
+			})
+	
+		}, 5000); 
 	});
 </script>
 <div class="easyui-layout" data-options="fit:true,border:false">

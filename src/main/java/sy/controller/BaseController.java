@@ -17,7 +17,7 @@ import sy.util.StringEscapeEditor;
  * 
  * 其他控制器继承此控制器获得日期字段类型转换和防止XSS攻击的功能
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 @Controller

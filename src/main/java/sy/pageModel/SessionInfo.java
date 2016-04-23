@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * session信息模型
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public class SessionInfo implements java.io.Serializable {
@@ -50,7 +50,8 @@ public class SessionInfo implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return this.name;
+		return "SessionInfo [id=" + id + ", name=" + name + ", ip=" + ip + "]";
 	}
 
+	
 }

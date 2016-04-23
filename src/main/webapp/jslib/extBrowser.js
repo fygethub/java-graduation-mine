@@ -1,5 +1,5 @@
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * 浏览器相关信息
  */

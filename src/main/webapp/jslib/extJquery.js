@@ -60,7 +60,7 @@ $.cookie = function(key, value, options) {
 };
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery
  * 
@@ -81,7 +81,7 @@ $.serializeObject = function(form) {
 };
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * 增加formatString功能
  * 
@@ -97,7 +97,7 @@ $.formatString = function(str) {
 };
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * 接收一个以逗号分割的字符串，返回List，list里每一项都是一个字符串
  * 
@@ -117,7 +117,7 @@ $.stringToList = function(value) {
 };
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery
  * 
@@ -136,7 +136,7 @@ $.ajaxSetup({
 });
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * 去字符串空格
  * 

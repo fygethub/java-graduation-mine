@@ -11,7 +11,7 @@ import sy.pageModel.Tree;
 /**
  * 角色业务逻辑
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public interface RoleServiceI {

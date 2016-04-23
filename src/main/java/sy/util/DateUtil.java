@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 日期工具类
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public class DateUtil {

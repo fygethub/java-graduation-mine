@@ -1,7 +1,7 @@
 /**
  * 使panel和datagrid在加载时提示
  * 
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -10,7 +10,7 @@ $.fn.panel.defaults.loadingMessage = '加载中....';
 $.fn.datagrid.defaults.loadMsg = '加载中....';
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -38,7 +38,7 @@ $.fn.panel.defaults.onBeforeDestroy = function() {
 };
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -77,7 +77,7 @@ $.fn.window.defaults.onMove = easyuiPanelOnMove;
 $.fn.panel.defaults.onMove = easyuiPanelOnMove;
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -97,7 +97,7 @@ $.fn.combobox.defaults.onLoadError = easyuiErrorFunction;
 $.fn.form.defaults.onLoadError = easyuiErrorFunction;
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -148,7 +148,7 @@ $.fn.treegrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
 /**
  * grid tooltip参数
  * 
- * @author 孙宇
+ * @author fydor
  */
 var gridTooltipOptions = {
 	tooltip : function(jq, fields) {
@@ -226,7 +226,7 @@ $.extend($.fn.datagrid.methods, gridTooltipOptions);
 $.extend($.fn.treegrid.methods, gridTooltipOptions);
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -302,13 +302,14 @@ $.fn.tree.defaults.loadFilter = function(data, parent) {
 				treeData.push(data[i]);
 			}
 		}
+		//console.log(treeData);
 		return treeData;
 	}
 	return data;
 };
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -342,7 +343,7 @@ $.fn.treegrid.defaults.loadFilter = function(data, parentId) {
 };
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -351,7 +352,7 @@ $.fn.treegrid.defaults.loadFilter = function(data, parentId) {
 $.fn.combotree.defaults.loadFilter = $.fn.tree.defaults.loadFilter;
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * @requires jQuery,EasyUI
  * 
@@ -385,7 +386,7 @@ $.modalDialog = function(options) {
 };
 
 /**
- * @author 孙宇
+ * @author fydor
  * 
  * 定义一些小图标样式的数组
  */

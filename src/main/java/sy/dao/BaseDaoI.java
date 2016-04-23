@@ -10,7 +10,7 @@ import java.util.Map;
  * 
  * 其他DAO继承此类获取常用的数据库操作方法
  * 
- * @author 孙宇
+ * @author fydor
  * 
  * @param <T>
  *            模型

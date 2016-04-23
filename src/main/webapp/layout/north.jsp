@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" charset="utf-8">
 	/**
-	 * @author 孙宇
+	 * @author fydor
 	 * 
 	 * @requires jQuery,EasyUI,jQuery cookie plugin
 	 * 

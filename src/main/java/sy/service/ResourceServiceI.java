@@ -9,7 +9,7 @@ import sy.pageModel.Tree;
 /**
  * 资源Service
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public interface ResourceServiceI {

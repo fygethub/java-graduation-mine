@@ -2,6 +2,8 @@ package sy.activiti.processVariables;
 
 import java.io.InputStream;
 
+import javax.annotation.Resource;
+
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RuntimeService;
@@ -11,6 +13,7 @@ import org.activiti.engine.runtime.ProcessInstance;
 import org.junit.Test;
 
 public class ProcessVariablesTest {
+	@Resource
 	ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine(); 
 	
 	@Test

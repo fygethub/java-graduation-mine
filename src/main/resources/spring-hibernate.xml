@@ -85,7 +85,7 @@
 	</bean>
 
 	<!-- 注解方式配置事物 -->
-	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+    <tx:annotation-driven transaction-manager="transactionManager" /> 
 
 	<!-- 拦截器方式配置事物 -->
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">

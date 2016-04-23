@@ -1,4 +1,4 @@
-package sy.activiti;
+package sy.activiti.Instance;
 
 import java.io.File;
 import java.io.IOException;
@@ -112,7 +112,7 @@ public class HelloWorld {
 	/**完成我的任务*/
 	@Test
 	public void compliteMyPersonalTask(){
-		String taskId ="2704";
+		String taskId ="2701";
 		processEngine.getTaskService()
 						.complete(taskId);
 		System.out.println("Task Complete id is"+taskId);

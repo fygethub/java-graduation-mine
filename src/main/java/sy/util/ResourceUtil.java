@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 /**
  * 项目参数工具类
  * 
- * @author 孙宇
+ * @author fydor
  * 
  */
 public class ResourceUtil {

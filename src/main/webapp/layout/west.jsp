@@ -11,7 +11,7 @@
 		layout_west_tree = $('#layout_west_tree').tree({
 			url : layout_west_tree_url,
 			parentField : 'pid',
-			//lines : true,
+			lines : true,
 			onClick : function(node) {
 				if (node.attributes && node.attributes.url) {
 					var url;
