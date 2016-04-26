@@ -2,7 +2,7 @@
  * @title: HttpClientTest.java 
  * @package: liutf.httpClient.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年5月21日 上午10:54:40 
  * @version 1.0.0 
  */
@@ -29,7 +29,7 @@ import org.apache.http.util.EntityUtils;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年5月21日 上午10:54:40
  * @version: V1.0.0
  */

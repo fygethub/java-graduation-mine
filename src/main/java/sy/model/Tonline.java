@@ -13,7 +13,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 /**
- * Tonline entity. @author MyEclipse Persistence Tools
+ * Tonline entity.  MyEclipse Persistence Tools
  */
 @Entity
 @Table(name = "TONLINE", schema = "")

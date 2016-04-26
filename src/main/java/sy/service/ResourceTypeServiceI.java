@@ -7,7 +7,7 @@ import sy.pageModel.ResourceType;
 /**
  * 资源类型服务
  * 
- * @author fydor
+ * 
  * 
  */
 public interface ResourceTypeServiceI {

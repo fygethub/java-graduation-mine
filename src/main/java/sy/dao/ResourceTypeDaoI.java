@@ -5,7 +5,7 @@ import sy.model.Tresourcetype;
 /**
  * 资源类型数据库操作类
  * 
- * @author fydor
+ * 
  * 
  */
 public interface ResourceTypeDaoI extends BaseDaoI<Tresourcetype> {

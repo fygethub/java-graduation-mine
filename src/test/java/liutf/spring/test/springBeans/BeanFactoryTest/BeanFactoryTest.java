@@ -2,7 +2,7 @@
  * @title: BeanFactoryTest.java 
  * @package: liutf.test.springBeans 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年5月15日 上午9:23:14 
  * @version 1.0.0 
  */
@@ -15,7 +15,7 @@ import org.springframework.core.io.Resource;
 
 /** 
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年5月15日 上午9:23:14 
  * @version: V1.0.0
  */
@@ -24,7 +24,7 @@ public class BeanFactoryTest {
 	/** 
 	 * @description: TODO
 	 * @param args
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年5月15日 上午9:23:14 
 	 */
 	public static void main(String[] args) {

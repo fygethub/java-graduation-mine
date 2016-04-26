@@ -2,7 +2,7 @@
  * @title: Test.java 
  * @package: liutf.ruiliTest 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月25日 下午4:21:14 
  * @version 1.0.0 
  */
@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年6月25日 下午4:21:14
  * @version: V1.0.0
  */

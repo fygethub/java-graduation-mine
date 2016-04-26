@@ -2,7 +2,7 @@
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2013 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @website http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 * @version 4.1.7 (2013-04-21)
@@ -5891,7 +5891,7 @@ _plugin('core', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -6127,7 +6127,7 @@ KindEditor.lang({
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -6173,7 +6173,7 @@ KindEditor.plugin('anchor', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -6266,7 +6266,7 @@ KindEditor.plugin('baidumap', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -6295,7 +6295,7 @@ KindEditor.plugin('clearhtml', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -6357,7 +6357,7 @@ KindEditor.plugin('code', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -6486,7 +6486,7 @@ KindEditor.plugin('emoticons', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -6675,7 +6675,7 @@ KindEditor.plugin('filemanager', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -6836,7 +6836,7 @@ KindEditor.plugin('flash', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -7154,7 +7154,7 @@ KindEditor.plugin('image', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -7292,7 +7292,7 @@ KindEditor.plugin('insertfile', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -7330,7 +7330,7 @@ KindEditor.plugin('lineheight', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -7396,7 +7396,7 @@ KindEditor.plugin('link', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -7533,7 +7533,7 @@ KindEditor.plugin('map', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -7703,7 +7703,7 @@ KindEditor.plugin('media', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -9091,7 +9091,7 @@ if (typeof(SWFUpload) === "function") {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -9120,7 +9120,7 @@ KindEditor.plugin('pagebreak', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -9161,7 +9161,7 @@ KindEditor.plugin('plainpaste', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -9192,7 +9192,7 @@ KindEditor.plugin('preview', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -9272,7 +9272,7 @@ to
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -9977,7 +9977,7 @@ KindEditor.plugin('table', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/
@@ -10035,7 +10035,7 @@ KindEditor.plugin('template', function(K) {
 * KindEditor - WYSIWYG HTML Editor for Internet
 * Copyright (C) 2006-2011 kindsoft.net
 *
-* @author Roddy <luolonghao@gmail.com>
+*  Roddy <luolonghao@gmail.com>
 * @site http://www.kindsoft.net/
 * @licence http://www.kindsoft.net/license.php
 *******************************************************************************/

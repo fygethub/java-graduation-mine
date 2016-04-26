@@ -3,7 +3,7 @@ package sy.pageModel;
 /**
  * EasyUI 分页帮助类
  * 
- * @author fydor
+ * 
  * 
  */
 public class PageHelper implements java.io.Serializable {

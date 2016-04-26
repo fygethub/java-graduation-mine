@@ -21,7 +21,7 @@ import sy.util.ConfigUtil;
 /**
  * 角色控制器
  * 
- * @author fydor
+ * 
  * 
  */
 @Controller

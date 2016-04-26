@@ -11,7 +11,7 @@ import javax.sql.rowset.serial.SerialException;
 /**
  * 大文本操作工具类
  * 
- * @author fydor
+ * 
  * 
  */
 public class ClobUtil {

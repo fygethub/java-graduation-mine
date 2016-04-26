@@ -13,7 +13,7 @@ import com.alibaba.fastjson.JSON;
 /**
  * 图表控制器
  * 
- * @author fydor
+ * 
  * 
  */
 @Controller

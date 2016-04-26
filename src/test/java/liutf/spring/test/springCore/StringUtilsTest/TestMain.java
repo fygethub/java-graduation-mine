@@ -2,7 +2,7 @@
  * @title: TestMain.java 
  * @package: liutf.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年5月13日 上午11:19:40 
  * @version 1.0.0 
  */
@@ -12,7 +12,7 @@ import org.springframework.beans.factory.support.ReplaceOverride;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年5月13日 上午11:19:40
  * @version: V1.0.0
  */
@@ -21,7 +21,7 @@ public class TestMain {
 	/**
 	 * @description: TODO
 	 * @param args
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年5月13日 上午11:19:40
 	 */
 	public static void main(String[] args) {

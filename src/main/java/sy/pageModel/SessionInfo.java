@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * session信息模型
  * 
- * @author fydor
+ * 
  * 
  */
 public class SessionInfo implements java.io.Serializable {

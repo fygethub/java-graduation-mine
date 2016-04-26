@@ -2,7 +2,7 @@
  * @title: HttpClentUtils.java 
  * @package: liutf.httpClient.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年5月21日 上午11:22:55 
  * @version 1.0.0 
  */
@@ -26,7 +26,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.message.BasicNameValuePair;
 
 /**
- * @author: liutf
+ * : liutf
  * @date: 2015年5月21日 上午11:22:55
  * @version: V1.0.0
  */

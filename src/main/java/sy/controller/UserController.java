@@ -28,7 +28,7 @@ import com.alibaba.fastjson.JSON;
 /**
  * 用户控制器
  * 
- * @author fydor
+ * 
  * 
  */
 @Controller

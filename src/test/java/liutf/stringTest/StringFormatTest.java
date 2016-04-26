@@ -2,7 +2,7 @@
  * @title: StringFormatTest.java 
  * @package: liutf.stringTest 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月4日 下午3:26:56 
  * @version 1.0.0 
  */
@@ -10,7 +10,7 @@ package liutf.stringTest;
 
 /** 
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年6月4日 下午3:26:56 
  * @version: V1.0.0
  */
@@ -19,7 +19,7 @@ public class StringFormatTest {
 	/** 
 	 * @description: 对String的format进行测试
 	 * @param args
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年6月4日 下午3:26:56 
 	 */
 	public static void main(String[] args) {

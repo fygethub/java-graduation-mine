@@ -6,7 +6,7 @@ import sy.pageModel.PageHelper;
 
 /**
  * 
- * @author fydor
+ * 
  * 
  */
 public interface BugServiceI {

@@ -2,7 +2,7 @@
  * @title: Log4jTest.java 
  * @package: liutf.log4jTest 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年5月29日 下午4:31:05 
  * @version 1.0.0 
  */
@@ -20,7 +20,7 @@ import org.apache.log4j.SimpleLayout;
 
 /** 
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年5月29日 下午4:31:05 
  * @version: V1.0.0
  */

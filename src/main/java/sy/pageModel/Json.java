@@ -6,7 +6,7 @@ package sy.pageModel;
  * 
  * 用户后台向前台返回的JSON对象
  * 
- * @author fydor
+ * 
  * 
  */
 public class Json implements java.io.Serializable {

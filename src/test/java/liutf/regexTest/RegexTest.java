@@ -2,7 +2,7 @@
  * @title: RegexTest.java 
  * @package: liutf.regexTest 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年7月6日 上午9:10:30 
  * @version 1.0.0 
  */
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 /**
  * @description: 关于正则表达式的使用测试
- * @author: liutf
+ * : liutf
  * @date: 2015年7月6日 上午9:10:30
  * @version: V1.0.0
  */

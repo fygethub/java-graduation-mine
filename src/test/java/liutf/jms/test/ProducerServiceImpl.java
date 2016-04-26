@@ -2,7 +2,7 @@
  * @title: ProducerServiceImpl.java 
  * @package: liutf.jms.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月8日 上午10:56:18 
  * @version 1.0.0 
  */
@@ -18,7 +18,7 @@ import org.springframework.jms.core.MessageCreator;
 
 /**
  * @description: 生产者实现
- * @author: liutf
+ * : liutf
  * @date: 2015年6月8日 上午10:56:18
  * @version: V1.0.0
  */
@@ -38,7 +38,7 @@ public class ProducerServiceImpl implements ProducerService {
 	 * @description: 发送消息
 	 * @param msgId
 	 * @param result
-	 * @author: liutf
+	 * : liutf
 	 * @see liutf.jms.test.ProducerService#sendMessage(java.lang.String, int)
 	 * @date: 2015年6月8日 上午11:02:58
 	 */

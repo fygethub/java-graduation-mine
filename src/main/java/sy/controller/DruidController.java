@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 数据源控制器
  * 
- * @author fydor
+ * 
  * 
  */
 @Controller

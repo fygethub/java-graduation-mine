@@ -2,7 +2,7 @@
  * @title: FilenameFiterTest.java 
  * @package: liutf.stream.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月16日 上午9:16:24 
  * @version 1.0.0 
  */
@@ -13,7 +13,7 @@ import java.io.FilenameFilter;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年6月16日 上午9:16:24
  * @version: V1.0.0
  */
@@ -24,7 +24,7 @@ public class FilenameFiterTest implements FilenameFilter {
 	 * @param dir
 	 * @param name
 	 * @return
-	 * @author: liutf
+	 * : liutf
 	 * @see java.io.FilenameFilter#accept(java.io.File, java.lang.String)
 	 * @date: 2015年6月16日 上午9:18:04
 	 */
@@ -47,7 +47,7 @@ public class FilenameFiterTest implements FilenameFilter {
 	/**
 	 * @description: TODO
 	 * @param args
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年6月16日 上午9:16:24
 	 */
 	public static void main(String[] args) {

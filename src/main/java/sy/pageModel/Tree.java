@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * EasyUI tree模型
  * 
- * @author fydor
+ * 
  * 
  */
 public class Tree implements java.io.Serializable {

@@ -24,7 +24,7 @@
  * 
  * @name $.cookie
  * @cat Plugins/Cookie
- * @author Klaus Hartl/klaus.hartl@stilbuero.de
+ *  Klaus Hartl/klaus.hartl@stilbuero.de
  * 
  * Get the value of a cookie with the given key.
  * 
@@ -38,7 +38,7 @@
  * 
  * @name $.cookie
  * @cat Plugins/Cookie
- * @author Klaus Hartl/klaus.hartl@stilbuero.de
+ *  Klaus Hartl/klaus.hartl@stilbuero.de
  */
 $.cookie = function(key, value, options) {
 	if (arguments.length > 1 && (value === null || typeof value !== "object")) {
@@ -60,7 +60,7 @@ $.cookie = function(key, value, options) {
 };
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery
  * 
@@ -81,7 +81,7 @@ $.serializeObject = function(form) {
 };
 
 /**
- * @author fydor
+ * 
  * 
  * 增加formatString功能
  * 
@@ -97,7 +97,7 @@ $.formatString = function(str) {
 };
 
 /**
- * @author fydor
+ * 
  * 
  * 接收一个以逗号分割的字符串，返回List，list里每一项都是一个字符串
  * 
@@ -117,7 +117,7 @@ $.stringToList = function(value) {
 };
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery
  * 
@@ -136,7 +136,7 @@ $.ajaxSetup({
 });
 
 /**
- * @author fydor
+ * 
  * 
  * 去字符串空格
  * 

@@ -2,7 +2,7 @@
  * @title: MainTest.java 
  * @package: liutf.quartz.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月1日 下午2:59:22 
  * @version 1.0.0 
  */
@@ -16,7 +16,7 @@ import org.springframework.core.io.Resource;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年6月1日 下午2:59:22
  * @version: V1.0.0
  */
@@ -25,7 +25,7 @@ public class MainTest {
 	/**
 	 * @description: TODO
 	 * @param args
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年6月1日 下午2:59:22
 	 */
 	public static void main(String[] args) {

@@ -2,7 +2,7 @@
  * @title: BufferTest001.java 
  * @package: liutf.bufferTest 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年7月3日 上午9:12:52 
  * @version 1.0.0 
  */
@@ -10,7 +10,7 @@ package liutf.bufferTest;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年7月3日 上午9:12:52
  * @version: V1.0.0
  */

@@ -2,7 +2,7 @@
  * @title: AssertTest.java 
  * @package: liutf 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月2日 上午9:27:55 
  * @version 1.0.0 
  */
@@ -12,7 +12,7 @@ import org.springframework.util.Assert;
 
 /** 
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年6月2日 上午9:27:55 
  * @version: V1.0.0
  */
@@ -21,7 +21,7 @@ public class AssertTest {
 	/** 
 	 * @description: TODO
 	 * @param args
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年6月2日 上午9:27:55 
 	 */
 	public static void main(String[] args) {

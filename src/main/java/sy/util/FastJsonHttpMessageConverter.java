@@ -20,7 +20,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
  * 
  * 利用@ResponseBody注解返回JSON字符串
  * 
- * @author fydor
+ * 
  * 
  */
 public class FastJsonHttpMessageConverter extends AbstractHttpMessageConverter<Object> {

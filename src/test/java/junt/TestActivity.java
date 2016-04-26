@@ -1,8 +1,5 @@
 package junt;
 
-import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngineConfiguration;
-import org.junit.Test;
 
 public class TestActivity {
 	 /*使用代码创建工作流需要的23张表*/
@@ -19,7 +16,7 @@ public class TestActivity {
 		ProcessEngine processEngine=processEngineConfiguration.buildProcessEngine();
 		System.out.println("processEngine"+processEngine);
 	}*/
-	
+	/*
 	@Test
 	public void create2(){
 		ProcessEngineConfiguration processEngineConfiguration=ProcessEngineConfiguration.createProcessEngineConfigurationFromResource("activiti.cfg.xml");
@@ -27,5 +24,5 @@ public class TestActivity {
 		//ProcessEngine processEngine=ProcessEngines.getDefaultProcessEngine();
 		
 		System.out.println(processEngine);
-	}
+	}*/
 }

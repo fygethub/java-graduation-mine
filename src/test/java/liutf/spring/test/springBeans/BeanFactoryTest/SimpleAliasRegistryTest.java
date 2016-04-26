@@ -2,7 +2,7 @@
  * @title: SimpleAliasRegistry.java 
  * @package: liutf.test.springBeans 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年5月14日 上午10:46:52 
  * @version 1.0.0 
  */
@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年5月14日 上午10:46:52
  * @version: V1.0.0
  */
@@ -22,7 +22,7 @@ public class SimpleAliasRegistryTest {
 	/**
 	 * @description: TODO
 	 * @param args
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年5月14日 上午10:46:52
 	 */
 	public static void main(String[] args) {

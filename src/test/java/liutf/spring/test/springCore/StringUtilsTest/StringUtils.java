@@ -2,7 +2,7 @@
  * @title: StringUtils.java 
  * @package: liutf.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年5月13日 上午11:02:35 
  * @version 1.0.0 
  */
@@ -10,7 +10,7 @@ package liutf.spring.test.springCore.StringUtilsTest;
 
 /**
  * @description: 测试对象是spring-core-3.2.3.RELEASE包中的org.springframework.util.StringUtils类
- * @author: liutf
+ * : liutf
  * @date: 2015年5月13日 上午11:02:35
  * @version: V1.0.0
  */

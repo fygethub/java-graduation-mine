@@ -1,6 +1,6 @@
 /**
  * Dark blue theme for Highcharts JS
- * @author Torstein Hønsi
+ *  Torstein Hønsi
  */
 
 Highcharts.theme = {

@@ -6,7 +6,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   <display-name>sypro_1</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:spring.xml,classpath:spring-ehcache.xml,classpath:spring-hibernate.xml,classpath:spring-druid.xml,classpath:spring-tasks.xml,classpath:spring-tasks.xml</param-value>
+    <param-value>classpath:spring.xml,classpath:spring-ehcache.xml,classpath:spring-hibernate.xml,classpath:spring-druid.xml,classpath:spring-tasks.xml,classpath:spring-activiti.xml</param-value>
   </context-param>
   <filter>
     <filter-name>encodingFilter</filter-name>
@@ -133,12 +133,12 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <welcome-file>/index.jsp</welcome-file>
     <welcome-file>/init.jsp</welcome-file>
   </welcome-file-list>
-  <error-page>
+ <error-page>
     <error-code>404</error-code>
     <location>/error/404.jsp</location>
-  </error-page>
-  <error-page>
+  </error-page> 
+   <error-page>
     <error-code>500</error-code>
     <location>/error/500.jsp</location>
-  </error-page>
+  </error-page> 
 </web-app>

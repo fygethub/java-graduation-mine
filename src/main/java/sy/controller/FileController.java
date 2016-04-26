@@ -34,7 +34,7 @@ import sy.util.ConfigUtil;
 /**
  * 文件控制器
  * 
- * @author fydor
+ * 
  * 
  */
 @Controller

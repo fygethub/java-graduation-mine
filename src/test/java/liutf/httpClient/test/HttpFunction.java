@@ -2,7 +2,7 @@
  * @title: HttpFunction.java 
  * @package: liutf.httpClient.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年5月21日 下午2:48:21 
  * @version 1.0.0 
  */
@@ -15,7 +15,7 @@ import org.apache.http.client.ClientProtocolException;
 
 /**
  * @description: 处理提交工具中的http请求部分
- * @author: liutf
+ * : liutf
  * @date: 2015年5月21日 下午2:48:21
  * @version: V1.0.0
  */
@@ -28,7 +28,7 @@ public class HttpFunction {
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年5月21日 下午2:50:15
 	 */
 	public static String uploadXml(String url, File xmlFile)
@@ -42,7 +42,7 @@ public class HttpFunction {
 	 * @return
 	 * @throws ClientProtocolException
 	 * @throws IOException
-	 * @author: liutf
+	 * : liutf
 	 * @date: 2015年5月21日 下午2:53:22
 	 */
 	public static String notify(String url) throws ClientProtocolException,

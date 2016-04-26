@@ -113,7 +113,7 @@
 	<div id="index_layout">
 		<div data-options="region:'north',href:'${pageContext.request.contextPath}/layout/north.jsp'" style="height: 70px; overflow: hidden;" class="logo"></div>
 		<div data-options="region:'west',href:'${pageContext.request.contextPath}/layout/west.jsp',split:true" title="模块导航" style="width: 200px; overflow: hidden;"></div>
-		<div data-options="region:'center'" title="欢迎使用SyPro" style="overflow: hidden;">
+		<div data-options="region:'center'" title="欢迎使用" style="overflow: hidden;">
 			<div id="index_tabs" style="overflow: hidden;">
 				<div title="首页" data-options="border:false" style="overflow: hidden;">
 					<iframe src="${pageContext.request.contextPath}/portal/index.jsp" frameborder="0" style="border: 0; width: 100%; height: 98%;"></iframe>
@@ -121,6 +121,7 @@
 			</div>
 		</div>
 		<div data-options="region:'east',href:'${pageContext.request.contextPath}/layout/east.jsp'" title="日历" style="width: 230px; overflow: hidden;"></div>
+		
 		<div data-options="region:'south',href:'${pageContext.request.contextPath}/layout/south.jsp',border:false" style="height: 30px; overflow: hidden;"></div>
 	</div>
 
@@ -131,6 +132,7 @@
 		<div title="closeOther" data-options="iconCls:'delete'">关闭其他</div>
 		<div title="closeAll" data-options="iconCls:'delete'">关闭所有</div>
 	</div>
-
+<script type="text/javascript">
+</script>
 </body>
 </html>

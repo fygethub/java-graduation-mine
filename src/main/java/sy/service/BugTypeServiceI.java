@@ -6,7 +6,7 @@ import sy.model.Tbugtype;
 
 /**
  * 
- * @author fydor
+ * 
  * 
  */
 public interface BugTypeServiceI {

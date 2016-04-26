@@ -11,7 +11,7 @@ import sy.service.InitServiceI;
 /**
  * 初始化数据库控制器
  * 
- * @author fydor
+ * 
  * 
  */
 @Controller

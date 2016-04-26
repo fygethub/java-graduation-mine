@@ -2,7 +2,7 @@
  * @title: BufferedInputStream.java 
  * @package: liutf.stream.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月4日 上午9:38:41 
  * @version 1.0.0 
  */
@@ -19,7 +19,7 @@ import java.util.Date;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年6月4日 上午9:38:41
  * @version: V1.0.0
  */

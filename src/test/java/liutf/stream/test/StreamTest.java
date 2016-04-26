@@ -2,7 +2,7 @@
  * @title: StreamTest.java 
  * @package: liutf.stream.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月4日 上午9:08:55 
  * @version 1.0.0 
  */
@@ -10,7 +10,7 @@ package liutf.stream.test;
 
 /**
  * @description: TODO
- * @author: liutf
+ * : liutf
  * @date: 2015年6月4日 上午9:08:55
  * @version: V1.0.0
  */

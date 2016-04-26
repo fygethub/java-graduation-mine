@@ -1,7 +1,7 @@
 /**
  * 使panel和datagrid在加载时提示
  * 
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -10,7 +10,7 @@ $.fn.panel.defaults.loadingMessage = '加载中....';
 $.fn.datagrid.defaults.loadMsg = '加载中....';
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -38,7 +38,7 @@ $.fn.panel.defaults.onBeforeDestroy = function() {
 };
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -77,7 +77,7 @@ $.fn.window.defaults.onMove = easyuiPanelOnMove;
 $.fn.panel.defaults.onMove = easyuiPanelOnMove;
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -97,7 +97,7 @@ $.fn.combobox.defaults.onLoadError = easyuiErrorFunction;
 $.fn.form.defaults.onLoadError = easyuiErrorFunction;
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -148,7 +148,7 @@ $.fn.treegrid.defaults.onHeaderContextMenu = createGridHeaderContextMenu;
 /**
  * grid tooltip参数
  * 
- * @author fydor
+ * 
  */
 var gridTooltipOptions = {
 	tooltip : function(jq, fields) {
@@ -202,7 +202,7 @@ var gridTooltipOptions = {
  * 
  * $("#dg").datagrid('tooltip',['productid','listprice']); 指定列
  * 
- * @author 夏悸
+ *  夏悸
  */
 $.extend($.fn.datagrid.methods, gridTooltipOptions);
 
@@ -221,12 +221,12 @@ $.extend($.fn.datagrid.methods, gridTooltipOptions);
  * 
  * $("#dg").treegrid('tooltip',['productid','listprice']); 指定列
  * 
- * @author 夏悸
+ *  夏悸
  */
 $.extend($.fn.treegrid.methods, gridTooltipOptions);
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -242,7 +242,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 });
 
 /**
- * @author 夏悸
+ *  夏悸
  * 
  * @requires jQuery,EasyUI
  * 
@@ -274,7 +274,7 @@ $.extend($.fn.tree.methods, {
 });
 
 /**
- * @author 夏悸
+ *  夏悸
  * 
  * @requires jQuery,EasyUI
  * 
@@ -309,7 +309,7 @@ $.fn.tree.defaults.loadFilter = function(data, parent) {
 };
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -343,7 +343,7 @@ $.fn.treegrid.defaults.loadFilter = function(data, parentId) {
 };
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -352,7 +352,7 @@ $.fn.treegrid.defaults.loadFilter = function(data, parentId) {
 $.fn.combotree.defaults.loadFilter = $.fn.tree.defaults.loadFilter;
 
 /**
- * @author fydor
+ * 
  * 
  * @requires jQuery,EasyUI
  * 
@@ -386,7 +386,7 @@ $.modalDialog = function(options) {
 };
 
 /**
- * @author fydor
+ * 
  * 
  * 定义一些小图标样式的数组
  */

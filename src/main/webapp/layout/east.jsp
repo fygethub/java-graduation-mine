@@ -8,7 +8,9 @@
 		return str;
 	};
 	$(document).ready(function(){
-		$('#layout_east_onlineDatagrid').datagrid({
+	setTimeout("$('#layout_east_onlineDatagrid').datagrid('reload')",2000);
+		
+	$('#layout_east_onlineDatagrid').datagrid({
 			url : '${pageContext.request.contextPath}/onlineController/datagrid', 
 			title : '',
 			iconCls : '',
@@ -79,6 +81,7 @@
 			tools : [ {
 				iconCls : 'database_refresh',
 				handler : function() {
+					$('#layout_east_onlineDatagrid').datagrid('reload');
 				}
 			} ]
 		});
@@ -90,7 +93,7 @@
 				url:'${pageContext.request.contextPath}/onlineController/datagrid',
 				type:'POST',
 				success:function(data){
-					data=JSON.parse(data);
+					//data=JSON.parse(data);
 					for(var i=0;i<data.rows.length;i++){
 						$datagrid.datagrid('updateRow',{index:i,row:{ip:data.rows[i].ip,loginname:data.rows[i].loginname}})
 						console.log("updata:"+i)

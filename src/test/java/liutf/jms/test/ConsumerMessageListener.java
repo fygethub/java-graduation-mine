@@ -2,7 +2,7 @@
  * @title: ConsumerMessageListener.java 
  * @package: liutf.jms.test 
  * @description: TODO
- * @author liutf  
+ *  liutf  
  * @date 2015年6月8日 上午11:36:27 
  * @version 1.0.0 
  */
@@ -14,7 +14,7 @@ import javax.jms.TextMessage;
 
 /**
  * @description: 消息监听器
- * @author: liutf
+ * : liutf
  * @date: 2015年6月8日 上午11:36:27
  * @version: V1.0.0
  */
