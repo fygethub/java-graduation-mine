@@ -5,11 +5,13 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipInputStream;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.activiti.engine.FormService;
 import org.activiti.engine.HistoryService;
@@ -20,17 +22,23 @@ import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
+import org.apache.log4j.Logger;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import sy.dao.LeaveBillDaoI;
 import sy.model.LeaveBill;
+import sy.pageModel.SessionInfo;
 import sy.pageModel.activiti.ProcessDefineModel;
 import sy.pageModel.activiti.ProcessDeployModel;
 import sy.pageModel.activiti.WorkflowModel;
 import sy.service.WorkflowServiceI;
+import sy.util.ConfigUtil;
 
 @Service
 public class WorkflowServiceImpl implements WorkflowServiceI{
+	private static final Logger logger=Logger.getLogger(WorkflowServiceImpl.class);
 	
 	@Autowired
 	private RepositoryService repositoryService;
@@ -47,50 +55,14 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 	@Resource
 	private HistoryService historyService;
 
-	public void setRepositoryService(RepositoryService repositoryService) {
-		this.repositoryService = repositoryService;
-	}
-
-	public void setRuntimeService(RuntimeService runtimeService) {
-		this.runtimeService = runtimeService;
-	}
-
-	public void setTaskService(TaskService taskService) {
-		this.taskService = taskService;
-	}
-
-	public void setFormService(FormService formService) {
-		this.formService = formService;
-	}
-
-	public void setHistoryService(HistoryService historyService) {
-		this.historyService = historyService;
-	}
-
-	public RepositoryService getRepositoryService() {
-		return repositoryService;
-	}
-
-	public RuntimeService getRuntimeService() {
-		return runtimeService;
-	}
-
-	public TaskService getTaskService() {
-		return taskService;
-	}
-
-	public FormService getFormService() {
-		return formService;
-	}
-
-	public HistoryService getHistoryService() {
-		return historyService;
-	}
-
+	@Resource
+	LeaveBillDaoI leaveBillDaoI;
+	
 	/**部署流程定义*/
 	@Override
 	public boolean saveNewDeploye(File file, String filename) {
 		// TODO Auto-generated method stub
+		logger.info("部署流程定义");
 		String fileTypeName=file.getName().substring(file.getName().lastIndexOf(".")+1);
 		if (fileTypeName.equals("zip")) {
 			return false;
@@ -121,6 +93,7 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 	@Override
 	public List<ProcessDeployModel> findDeploymentList(int page,int rows) {
 		// TODO Auto-generated method stub
+		logger.info("查询部署对象信息");
 		List<Deployment> list=repositoryService.createDeploymentQuery()
 										.orderByDeploymenTime()
 										.asc()
@@ -128,9 +101,11 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 		List<ProcessDeployModel> list2=new ArrayList<ProcessDeployModel>();
 		for(Deployment d:list){
 			ProcessDeployModel processDeployModel=new ProcessDeployModel();
-			processDeployModel.setId(d.getId());
+			/*processDeployModel.setId(d.getId());
 			processDeployModel.setDeploymentTime(d.getDeploymentTime());
-			processDeployModel.setName(d.getName());
+			processDeployModel.setName(d.getName());*/
+			BeanUtils.copyProperties(d, processDeployModel);
+			
 			list2.add(processDeployModel);
 		}
 		return list2;
@@ -152,6 +127,7 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 	@Override
 	public List<ProcessDefineModel> findProcessDefinitionList(int page,int rows) {
 		// TODO Auto-generated method stub
+		logger.info("");
 		List<ProcessDefinition> list=repositoryService.createProcessDefinitionQuery()
 														.orderByProcessDefinitionVersion()
 														.asc()
@@ -159,14 +135,15 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 		List<ProcessDefineModel> list2=new ArrayList<ProcessDefineModel>();
 		for(ProcessDefinition p:list){
 			ProcessDefineModel pModel=new ProcessDefineModel();
-			pModel.setName(p.getName());
+			/*pModel.setName(p.getName());
 			pModel.setId(p.getId());
 			pModel.setVersion(p.getVersion());
 			pModel.setKey(p.getKey());
 			pModel.setDeploymentId(p.getDeploymentId());
 			pModel.setResourceName(p.getResourceName());
 			pModel.setDiagramResourceName(p.getDiagramResourceName());
-			pModel.setDescription(p.getDescription());
+			pModel.setDescription(p.getDescription());*/
+			BeanUtils.copyProperties(p, pModel);
 			list2.add(pModel);
 		}
 		
@@ -201,9 +178,33 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 
 	/**更新请假状态，启动流程实例，让启动的流程实例关联业务*/
 	@Override
-	public void saveStartProcess(WorkflowModel workflowModel) {
+	public void saveStartProcess(WorkflowModel workflowModel,HttpSession session) {
 		// TODO Auto-generated method stub
-		
+		//1：获取请假单ID，使用请假单ID，查询请假单的对象LeaveBill
+		//更新请假单的请假状态从0变成1（初始录入-->审核中）
+			
+				Long id = workflowModel.getId();
+				LeaveBill leaveBill = leaveBillDaoI.get(LeaveBill.class, id);
+				leaveBill.setState(1);
+				
+			String key=	leaveBill.getClass().getSimpleName();
+			/**
+			 * 2：从Session中获取当前任务的办理人，使用流程变量设置下一个任务的办理人
+				    * inputUser是流程变量的名称，
+				    * 获取的办理人是流程变量的值
+			 */
+			SessionInfo sessionInfo= (SessionInfo) session.getAttribute(ConfigUtil.getSessionInfoName());
+			logger.info("更新请假状态，启动流程实例"+sessionInfo.getName());
+			Map<String, Object> variables = new HashMap<String,Object>();
+			variables.put("inputUser",sessionInfo.getName());//表示惟一用户
+			/**
+			 * 3：	(1)使用流程变量设置字符串（格式：LeaveBill.id的形式），通过设置，让启动的流程（流程实例）关联业务
+	   				(2)使用正在执行对象表中的一个字段BUSINESS_KEY（Activiti提供的一个字段），让启动的流程（流程实例）关联业务
+			 */
+			String objId=key+"."+id;
+			variables.put("objId", objId);
+			//4：使用流程定义的key，启动流程实例，同时设置流程变量，同时向正在执行的执行对象表中的字段BUSINESS_KEY添加业务数据，同时让流程关联业务
+			runtimeService.startProcessInstanceByKey(key,objId,variables);
 	}
 
 	/**使用当前用户名查询正在执行的任务表，获取当前任务的集合LIST<Task>*/

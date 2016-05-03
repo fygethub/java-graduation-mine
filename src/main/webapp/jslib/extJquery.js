@@ -91,7 +91,7 @@ $.serializeObject = function(form) {
  */
 $.formatString = function(str) {
 	for ( var i = 0; i < arguments.length - 1; i++) {
-		str = str.replace("{" + i + "}", arguments[i + 1]);
+		str = str.replace("{"+ i + "}", arguments[i + 1]);
 	}
 	return str;
 };

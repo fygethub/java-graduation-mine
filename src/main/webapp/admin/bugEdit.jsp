@@ -69,7 +69,7 @@
 					<th>BUG名称</th>
 					<td><input name="name" type="text" placeholder="请输入BUG名称" class="easyui-validatebox span2" data-options="required:true" value="${bug.name}"></td>
 				</tr>
-				<tr>
+				<tr> 
 					<th>BUG类型</th>
 					<td><select name="typeId" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
 							<c:forEach items="${bugTypeList}" var="bugType">

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,8 @@ import sy.service.WorkflowServiceI;
 @RequestMapping("/processController")
 public class DefineProcessController {
 
+	private static final Logger logger = Logger.getLogger(DefineProcessController.class);
+	
 	@Autowired
 	WorkflowServiceI workflowServiceI;
 	
@@ -36,6 +39,7 @@ public class DefineProcessController {
 	 * @return */
 	@RequestMapping("/deploy")
 	public String deploy(){
+		logger.info("跳转到流程部署界面");
 		return "/activity/deployprocess/deployprocess";
 	}
 	
@@ -111,10 +115,10 @@ public class DefineProcessController {
 	@RequestMapping("/processdel")
 	@ResponseBody
 	public String delProcessDefine(String id){
-	
 		workflowServiceI.deleteProcessDefinitionByDeploymentId(id);
 		return "success";
 	}
+	
 	
 	/**
 	 * 查看流程图
@@ -140,8 +144,7 @@ public class DefineProcessController {
 			e.printStackTrace();
 		}
 		
-		
-		return name;
+		return null;
 	}
 	
 }

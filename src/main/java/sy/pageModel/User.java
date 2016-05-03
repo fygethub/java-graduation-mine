@@ -106,4 +106,16 @@ public class User implements java.io.Serializable {
 		this.modifydatetime = modifydatetime;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", pwd=" + pwd
+				+ ", createdatetime=" + createdatetime + ", modifydatetime="
+				+ modifydatetime + ", createdatetimeStart="
+				+ createdatetimeStart + ", createdatetimeEnd="
+				+ createdatetimeEnd + ", modifydatetimeStart="
+				+ modifydatetimeStart + ", modifydatetimeEnd="
+				+ modifydatetimeEnd + ", roleIds=" + roleIds + ", roleNames="
+				+ roleNames + "]";
+	}
+
 }

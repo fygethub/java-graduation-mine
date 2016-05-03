@@ -20,13 +20,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
 	</bean>
 	
-	<!-- 
-	相当于下面的代码
-	RepositoryServicie repositoryService = processEngine.getRepositoryService();
-	RuntimeServicie repositoryService = processEngine.getRuntimeServicie();
-	TaskServicie taskServicie = processEngine.getTaskServicie();
-	HistoryServicie historyServicie = processEngine.getHistoryServicie();
-	 -->
+
 	<!-- 由流程引擎对象，提供的方法，创建项目中使用的Activiti工作流的Service -->
 	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
 	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />

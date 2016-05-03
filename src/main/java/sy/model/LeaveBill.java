@@ -1,5 +1,6 @@
 package sy.model;
 
+import java.sql.Clob;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -36,7 +37,7 @@ public class LeaveBill {
 	private Date leaveDate = new Date();// 请假时间
 	
 	@Column(name="REMARK",length=200)
-	private String remark;// 备注
+	private Clob remark;// 备注
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="USER_ID")
@@ -45,6 +46,7 @@ public class LeaveBill {
 	@Column(name="STATE",length=1)
 	private Integer state=0;// 请假单状态 0初始录入,1.开始审批,2为审批完成
 
+	
 	public String getId() {
 		return id;
 	}
@@ -61,13 +63,7 @@ public class LeaveBill {
 		this.days = days;
 	}
 
-	public String getContent() {
-		return content;
-	}
 
-	public void setContent(String content) {
-		this.content = content;
-	}
 
 	public Date getLeaveDate() {
 		return leaveDate;
@@ -77,11 +73,20 @@ public class LeaveBill {
 		this.leaveDate = leaveDate;
 	}
 
-	public String getRemark() {
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Clob getRemark() {
 		return remark;
 	}
 
-	public void setRemark(String remark) {
+	public void setRemark(Clob remark) {
 		this.remark = remark;
 	}
 
@@ -99,6 +104,13 @@ public class LeaveBill {
 
 	public void setState(Integer state) {
 		this.state = state;
+	}
+
+	@Override
+	public String toString() {
+		return "LeaveBill [id=" + id + ", days=" + days + ", content="
+				+ content + ", leaveDate=" + leaveDate + ", remark=" + remark
+				+ ", user=" + user + ", state=" + state + "]";
 	}
 
 	

@@ -5,6 +5,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
@@ -27,7 +29,7 @@ public interface WorkflowServiceI {
 
 	void deleteProcessDefinitionByDeploymentId(String deploymentId);
 
-	void saveStartProcess(WorkflowModel workflowModel);
+	void saveStartProcess(WorkflowModel workflowModel,HttpSession session);
 
 	List<Task> findTaskListByName(String name);
 

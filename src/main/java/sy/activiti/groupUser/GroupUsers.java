@@ -19,6 +19,7 @@ public class GroupUsers {
 	public void deploymentProcessDefinition(){
 		InputStream inputStreambpmn=this.getClass().getResourceAsStream("group.bpmn");
 		InputStream inputStreampng=this.getClass().getResourceAsStream("group.png");
+		System.out.println(processEngine);
 		Deployment deployment =processEngine.getRepositoryService()
 												.createDeployment()//创建部署对象
 												.name("任务")

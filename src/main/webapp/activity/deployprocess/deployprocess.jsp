@@ -8,12 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>上传文件</title>
 <jsp:include page="../../inc.jsp"></jsp:include>
-<c:if test="${fn:contains(sessionInfo.resourceList, '/processController/processdel')}">
-	<script type="text/javascript">
-		$.canDel = true;
-	</script>
-</c:if>
-
+ 
 <style type="text/css">
 *{margin:0;padding:0;}
 body{font-size:12px;font-family:"微软雅黑";color:#ccc;
@@ -23,56 +18,77 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 </style>
 </head>
 <body>
-	<div style="display:block;height:340px;">
-		<table id="deploytable">
-		</table>
-	</div>
-	<div style="display: block;">
-		<table id="definetable"></table>
-	</div>
+		<div style="height:340px;">
+			<table id="deploytable">
+			</table>
+		</div>
+		<div >
+			<table id="definetable"></table>
+		</div>
 	<div class="box">
-		<form action="${pageContext.request.contextPath}/processController/upload" method="post" enctype="multipart/form-data">
+		<form id="upload_form" method="post" enctype="multipart/form-data">
 			<h1>excel资料上传	</h1>
 			<table>
 				<tr><td>工件名：<input name="processName"></td></tr>
 				<tr><td><input type="file" name=deployfile></td></tr>
-				<tr><td><input type="submit" value="提交"></td></tr>
+				<tr><td><button onclick="upload_pro()">提交</button></td></tr>
 			</table>
 		</form>
-	
 	</div>
 <script type="text/javascript">	
 	var deployGrid;
 	var defineGrid;
 	$(document).ready(function(){
-		parent.$.messager.progress('close');
-		deployGrid=$("#deploytable").datagrid({
-				url:'${pageContext.request.contextPath}/processController/processdeployList',
-				title:'部署信息列表',
-				pagination:true,
-				rownumbers:true,
-				nowrap:true,
-				fit : true,
-				fitColumns : true,
-				pageList:[10,20,30],
-				columns:[[
-					{field:'id',title:'ID',width:100},
+		deployGrid = $('#deploytable').datagrid({
+			url:'${pageContext.request.contextPath}/processController/processdeployList',
+			fit : true,
+			fitColumns : true,
+			border : false,
+			pagination : true,
+			idField : 'id',
+			pageSize : 10,
+			pageList : [ 10, 20, 30, 40, 50 ],
+			sortName : 'deploymentTime',
+			sortOrder : 'desc',
+			checkOnSelect : false,
+			selectOnCheck : false,
+			nowrap : false,
+			striped : true,
+			rownumbers : true,
+			singleSelect : true,
+			columns : [ [ 
+	                {field:'id',title:'ID',width:100},
 					{field:'name',title:'流程名称',width:100},
 					{field:'deploymentTime',title:'发布时间',width:100,
 						formatter:function(value,row,index){
 							var time=new Date(value);
 							console.log(time);
 							return time;
-						},
-					},
+						}},
 					{field:'cz',title:'操作',width:100,formatter:function(value,row,index){
-						return "<a href=\"#\" onclick=delfunction(value,row,index)>删除</a>";
+						var str="";
+						str+=$.formatString("<a href='' onclick=deleteFun_deploy({0})>删除</a>",row.id);
+						return  str;
+						
 					}},
-				]],
-				onLoadSuccess:function(){
-					$('#deploytable').datagrid('tooltip');
-				}
-			})
+			] ],
+			toolbar : '#toolbar',
+			onLoadSuccess : function() {
+				$('#searchForm table').show();
+				parent.$.messager.progress('close');
+
+				$(this).datagrid('tooltip');
+			},
+			onRowContextMenu : function(e, rowIndex, rowData) {
+				e.preventDefault();
+				$(this).datagrid('unselectAll');
+				$(this).datagrid('selectRow', rowIndex);
+				$('#menu').menu('show', {
+					left : e.pageX,
+					top : e.pageY
+				});
+			}
+		});
 		defineGrid=$("#definetable").datagrid({
 				url:'${pageContext.request.contextPath}/processController/processDefineList',
 				title:'流程定义信息列表',
@@ -93,29 +109,32 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 					{field:'cz',title:'操作',width:100,
 						formatter :function(value,row,index){
 						var str="";
-						str += $.formatString('<img onclick="deleteFun(\'{0}\');" src="{1}" title="删除"/>', row.deploymentId, '${pageContext.request.contextPath}/style/images/extjs_icons/cancel.png');
+						str += $.formatString('<img onclick="deleteFun({0});" src="{1}" title="删除"/>', row.deploymentId, '${pageContext.request.contextPath}/style/images/extjs_icons/cancel.png');
 						str += '&nbsp';
-						str += $.formatString('<a target="_blank" onclick="searchFun(\'{0}\',\'{1}\')">查看流程图</a>',row.deploymentId,row.diagramResourceName);
+						str += $.formatString('<a target="_blank" href="${pageContext.request.contextPath}/processController/searchProcessPic?id={0}&name={1}">查看流程图</a>',row.deploymentId,row.diagramResourceName);
 						return str;	
 						}
 					},
 				]],
 				toolbar : '#toolbar',
-				onContextMenu : function(e, row) {
+				onLoadSuccess : function() {
+					//$('#searchForm table').show();
+					parent.$.messager.progress('close');
+
+					$(this).datagrid('tooltip');
+				},
+				onRowContextMenu : function(e, rowIndex, rowData) {
 					e.preventDefault();
-					$(this).treegrid('unselectAll');
-					$(this).treegrid('select', row.id);
+					$(this).datagrid('unselectAll');
+					$(this).datagrid('selectRow', rowIndex);
 					$('#menu').menu('show', {
 						left : e.pageX,
 						top : e.pageY
 					});
-				},
-				onLoadSuccess : function() {
-					parent.$.messager.progress('close');
-					$(this).treegrid('tooltip');
 				}
-			})
-	})
+			});
+		});
+
 	
 	/**删除流程定义*/
 	function deleteFun(id){
@@ -144,17 +163,37 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 				});
 			}
 		}
-	/**查看流程图片*/
-	function searchFun(id,name){
+	
+	//删除流程部署
+	function deleteFun_deploy(id){
 		parent.$.messager.progress({
 			title:'提示',
 			text:'数据处理中，请稍后....',
 		}) 
-		console.log('查看流程图片:id'+id+"name:"+name)
-		$.post('${pageContext.request.contextPath}/processController/searchProcessPic',{id:id,name:name},function(result){
-			
-			parent.$.messager.progress('close');
-		})
+		$.post()
+	}
+	
+	//上传提交流程
+	function upload_pro(){
+		$('#upload_form').form({    
+		    url:'${pageContext.request.contextPath}/processController/upload',    
+		    onSubmit: function(){    
+		    	parent.$.messager.progress({
+					title : '提示',
+					text : '数据处理中，请稍后....'
+				});
+		    },    
+		    success:function(data){
+		    	defineGrid.datagrid('reload');
+				deployGrid.datagrid('reload');
+		    	
+		        $.messager.show({
+		        	title:'提示',
+		        	msg:'success',
+		        })    
+		        $('#upload_form').form('clear');
+		    }    
+		});    
 	}
 </script>
 	<div id="menu" class="easyui-menu" style="width: 120px; display: none;">
@@ -166,5 +205,9 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 		<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'pencil_add'">添加</a>
 		<a onclick="defineGrid.datagrid('reload');" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'transmit'">刷新</a>
 	</div>
+	
+	<%  
+      out=pageContext.pushBody();  
+     %> 
 </body>
 </html>

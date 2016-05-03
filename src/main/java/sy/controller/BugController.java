@@ -40,6 +40,7 @@ public class BugController extends BaseController {
 	@RequestMapping("/manager")
 	public String manager(HttpServletRequest request) {
 		request.setAttribute("bugTypeList", bugTypeService.getBugTypeList());
+		
 		return "/admin/bug";
 	}
 

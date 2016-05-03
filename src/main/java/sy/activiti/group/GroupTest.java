@@ -22,8 +22,8 @@ public class GroupTest {
 				.createDeployment()
 				// 创建一个部署对象
 				.name("任务")
-				.addClasspathResource("diagrams/group.bpmn")// 从classpath的资源总加载
-				.addClasspathResource("diagrams/group.png").deploy();
+				.addClasspathResource("diagrams/FyProcess.bpmn")// 从classpath的资源总加载
+				.addClasspathResource("diagrams/FyProcess.png").deploy();
 
 		System.out.println("部署" + deployment.getId());
 		System.out.println("部署名称" + deployment.getName());

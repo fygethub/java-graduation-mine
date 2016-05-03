@@ -1,16 +1,29 @@
 package sy.controller.activity;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import sy.pageModel.activiti.WorkflowModel;
+import sy.service.WorkflowServiceI;
+
 @Controller
-@RequestMapping("/processController")
+@RequestMapping("/startprocessController")
 public class StartProcessController {
 	
-	/**跳转到流程start界面
+	
+	@Resource
+	WorkflowServiceI workflowServiceI;
+	
+	/**流程start
 	 * @return */
-	@RequestMapping("/start")
-	public String start(){
+	@RequestMapping("/startprocess")
+	public String startprocess(HttpServletRequest request,HttpSession session,WorkflowModel workflowModel){
+		workflowServiceI.saveStartProcess(workflowModel,session);
+		
 		return "/activity/apdprocess/startprocess";
 	}
 }
