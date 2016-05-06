@@ -104,12 +104,15 @@ public class LeaveBillServiceImpl implements LeaveBillServiceI{
 		whereHql += " where 1=1 ";
 		if (pLeaveBill != null) {
 			if (pLeaveBill.getCreatedatetimeStart() != null) {
-				whereHql += " and l.createdatetime >= :createdatetimeStart";
+				whereHql += " and l.createdatetime >= :createdatetimeStart ";
 				params.put("createdatetimeStart", pLeaveBill.getCreatedatetimeStart());
 			}
 			if (pLeaveBill.getCreatedatetimeEnd() != null) {
-				whereHql += " and l.createdatetime <= :createdatetimeEnd";
+				whereHql += " and l.createdatetime <= :createdatetimeEnd ";
 				params.put("createdatetimeEnd", pLeaveBill.getCreatedatetimeEnd());
+			}if(pLeaveBill.getUser() != null){
+				whereHql += "and l.user.name =:user ";
+				params.put("user", pLeaveBill.getUser());
 			}
 		}
 		return whereHql;

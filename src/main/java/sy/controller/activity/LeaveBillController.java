@@ -43,7 +43,9 @@ public class LeaveBillController {
 	
 	@RequestMapping("/datagrid")
 	@ResponseBody
-	public DataGrid manager(PageLeaveBill pLeaveBill,PageHelper ph){
+	public DataGrid manager(PageLeaveBill pLeaveBill,PageHelper ph,HttpSession session){
+		SessionInfo sessionInfo=(SessionInfo) session.getAttribute(ConfigUtil.getSessionInfoName());
+		pLeaveBill.setUser(sessionInfo.getName());
 		return leaveBillServiceI.dataGrid(pLeaveBill,ph);
 	}
 	
