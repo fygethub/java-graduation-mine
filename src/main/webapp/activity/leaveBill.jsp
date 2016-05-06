@@ -59,14 +59,19 @@
 		          {field:'cz',title:'操作',width:100,
 		        	formatter:function(value,row,index){
 		        		var str = '';
-						str += $.formatString('<a onclick="editFun(\'{0}\');">编辑</a>', row.id);
-						str += '&nbsp;';
-						str += $.formatString('<a onclick="deleteFun(\'{0}\');">删除</a>', row.id);
-						str += '&nbsp;';
-						str += $.formatString('<a onclick="viewFun(\'{0}\');">查看</a>', row.id);
-						str += '&nbsp';
-						str += $.formatString('<a onclick="startFun(\'{0}\');">提交申请</a>',row);
-						return str;
+		        		if(row.state == '0'){
+							str += $.formatString('<a onclick="editFun(\'{0}\');">编辑</a>', row.id);
+							str += '&nbsp;';
+							str += $.formatString('<a onclick="deleteFun(\'{0}\');">删除</a>', row.id);
+							str += '&nbsp;';
+							str += $.formatString('<a onclick="viewFun(\'{0}\');">查看</a>', row.id);
+							str += '&nbsp';
+							str += $.formatString('<a onclick="startFun(\'{0}\');">提交申请</a>',row.id);
+		        		}
+		        		if(row.state == '1'){
+		        			str += $.formatString('<a onclick="approvalFun(\'{0}\');">查看审批</a>', row.id);
+		        		}
+		        		return str;
 		        	}}
 	          ]],
 	          toolbar : '#toolbar',
@@ -84,7 +89,11 @@
 						left : e.pageX,
 						top : e.pageY
 					});
-				}
+				},
+			onDblClickCell :function(rowIndex, field, value){
+			
+				$(this).datagrid('unselectRow',rowIndex);
+			}
 		});	 	
 		
 		
@@ -110,13 +119,29 @@
 		parent.$.messager.progress('close');
 	}
 	
+	/**start */
+	function startFun(id){
+		parent.$.messager.progress();
+		$.post('${pageContext.request.contextPath}/personalProcessController/startprocess',{
+			id:id
+		}, function(result) {
+			if (result.success) {
+				parent.$.messager.alert('提示', result.msg, 'info');
+				datagrid.datagrid('reload');
+			}
+			parent.$.messager.progress('close');
+			datagrid.datagrid('unselectAll');
+		}, 'JSON');
+		
+	}
+	
+	
 	/**edit */
 	function editFun(id){
 		parent.$.messager.progress('close');
 		if(id==undefined){
 			var rows=datagrid.datagrid('getSelections');
 			id=rows[0].id;
-			console.log('id undefined'+id)
 		}
 		$.modalDialog({
 			title:'编辑',
@@ -176,6 +201,22 @@
 			href:'${pageContext.request.contextPath}/leaveBillController/view?id=' + id,
 		});
 	} 
+	
+	
+	/**approvalFun*/
+	function approvalFun(id){
+		parent.$.messager.progress('close');
+		$.post('${pageContext.request.contextPath}/',{
+			id:id
+		}, function(result) {
+			if (result.success) {
+				parent.$.messager.alert('提示', result.msg, 'info');
+				datagrid.datagrid('reload');
+			}
+			parent.$.messager.progress('close');
+		}, 'JSON');
+	}
+	
 </script>
 </head>
 <body>

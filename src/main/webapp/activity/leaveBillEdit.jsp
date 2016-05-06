@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <script>
-	$(document).ready(function(){
-		window.setTimeout(function() {
+	 $(document).ready(function(){
+		 /*	window.setTimeout(function() {
 			editor = KindEditor.create('#note', {
 				width : '680px',
 				height : '300px',
@@ -13,7 +13,7 @@
 				allowFileManager : true
 			});
 			parent.$.messager.progress('close');
-		},1)
+		},1) */
 		
 		
 		function fileManage() {
@@ -33,7 +33,7 @@
 		$('#form').form({
 			url : '${pageContext.request.contextPath}/leaveBillController/edit',
 			onSubmit : function() {
-				editor.sync();
+			//	editor.sync();
 				parent.$.messager.progress({
 					title : '提示',
 					text : '数据处理中，请稍后....'
@@ -76,10 +76,10 @@
 						<th>请假事由</th>
 						<td><input name="content" type="text"  class="easyui-validatebox span2" data-options="required:true" value="${leaveBill.content}"></td>
 					</tr>
-					<tr>
+					<%-- <tr>
 						<th>描述</th>
 						<td colspan="3"><textarea name="remark" id="note" cols="50" rows="5" style="visibility: hidden;">${leaveBill.remark}</textarea></td>
-					</tr>
+					</tr> --%>
 				</table>
 			</form>
 	  </div>

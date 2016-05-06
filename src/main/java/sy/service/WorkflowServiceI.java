@@ -11,7 +11,8 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 
-import sy.model.LeaveBill;
+import sy.pageModel.DataGrid;
+import sy.pageModel.activiti.PageLeaveBill;
 import sy.pageModel.activiti.ProcessDefineModel;
 import sy.pageModel.activiti.ProcessDeployModel;
 import sy.pageModel.activiti.WorkflowModel;
@@ -32,14 +33,15 @@ public interface WorkflowServiceI {
 	void saveStartProcess(WorkflowModel workflowModel,HttpSession session);
 
 	List<Task> findTaskListByName(String name);
+	DataGrid findTaskListByName_listpage(String name, int page,int rows);
 
 	String findTaskFormKeyByTaskId(String taskId);
 
-	LeaveBill findLeaveBillByTaskId(String taskId);
+	PageLeaveBill findLeaveBillByTaskId(String taskId);
 
 	List<String> findOutComeListByTaskId(String taskId);
 
-	void saveSubmitTask(WorkflowModel workflowModel);
+	void saveSubmitTask(WorkflowModel workflowModel, String id);
 
 	List<Comment> findCommentByTaskId(String taskId);
 
@@ -48,6 +50,8 @@ public interface WorkflowServiceI {
 	ProcessDefinition findProcessDefinitionByTaskId(String taskId);
 
 	Map<String, Object> findCoordingByTask(String taskId);
+	
+	
 	
 	
 	

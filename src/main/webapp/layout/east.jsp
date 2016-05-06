@@ -88,13 +88,13 @@
 		$('#layout_east_onlineDatagrid').datagrid('reload');	
 		 window.setInterval(function() {
 			var $datagrid= $('#layout_east_onlineDatagrid')
-			var rows=$datagrid.datagrid('getRows');
+			var rows_length=$datagrid.datagrid('getRows').length;
 			$.ajax({
 				url:'${pageContext.request.contextPath}/onlineController/datagrid',
 				type:'POST',
 				success:function(data){
 					//data=JSON.parse(data);
-					for(var i=0;i<data.rows.length;i++){
+					/* for(var i=0;i<data.rows.length;i++){
 						$datagrid.datagrid('updateRow',{index:i,row:{ip:data.rows[i].ip,loginname:data.rows[i].loginname}})
 						console.log("updata:"+i)
 					}
@@ -102,6 +102,9 @@
 					while(rows.length > data.rows.length ){
 						$datagrid.datagrid('deleteRow',data.rows.length);
 						console.log('delete row:');
+					} */
+					if(rows_length != data.rows.length){
+						$datagrid.datagrid('reload');
 					}
 				},
 				error:function(){

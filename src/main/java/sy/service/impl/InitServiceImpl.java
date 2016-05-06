@@ -645,6 +645,7 @@ public class InitServiceImpl implements InitServiceI {
 		admin1.setPwd(MD5Util.md5("123456"));
 		admin1.setCreatedatetime(new Date());
 		admin1.getTroles().addAll(roleDao.find("from Trole t where t.id = 'zyAdmin'"));// 给用户赋予资源管理员角色
+		//admin1.setManager(admin);
 		userDao.saveOrUpdate(admin1);
 
 		Tuser admin2 = new Tuser();

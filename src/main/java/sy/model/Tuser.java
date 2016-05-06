@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,6 +34,7 @@ public class Tuser implements java.io.Serializable {
 	private Date modifydatetime;
 	private String name;
 	private String pwd;
+	private Tuser manager;
 	private Set<Trole> troles = new HashSet<Trole>(0);
 
 	public Tuser() {
@@ -62,6 +64,9 @@ public class Tuser implements java.io.Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
+	
+	
+	
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATEDATETIME", length = 19)
@@ -99,6 +104,17 @@ public class Tuser implements java.io.Serializable {
 
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+
+	
+	@ManyToOne(fetch =FetchType.LAZY)
+	@JoinColumn(name="MANAGER")
+	public Tuser getManager() {
+		return manager;
+	}
+
+	public void setManager(Tuser manager) {
+		this.manager = manager;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)

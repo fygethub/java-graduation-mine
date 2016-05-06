@@ -53,9 +53,11 @@ public class DefineProcessController {
 		File file=diskFileIte.getStoreLocation();
 		System.out.println(file.getName());
 		System.out.println(deployfile.getName());
-		if (workflowServiceI.saveNewDeploye(file, processName)) {
+		if(commonsMultipartFile.getOriginalFilename().split("\\.")[1].equals("zip")){
+			workflowServiceI.saveNewDeploye(file, processName);
 			return "success";
-		}else {
+		}
+		else {
 			System.out.println("deploy failure,NOT A ZIPFILE");
 			return "deploy failure,NOT A ZIPFILE";
 		}
@@ -67,12 +69,9 @@ public class DefineProcessController {
 	public Map<String, Object> processDefineList(int page,int rows){
 		System.out.println("查询流程定义的信息");
 		try {
-			System.out.println("无异常");
-			System.out.println("page:"+page+"rows:"+rows);
 			List<ProcessDefineModel> list =workflowServiceI.findProcessDefinitionList(page, rows);
 			Map<String , Object> map=new HashMap<String, Object>();
 			map.put("total",workflowServiceI.processDefineListSize());
-			System.out.println(list.size()+".....................");
 			map.put("rows", list);
 			return map;
 		} catch (Exception e) {
@@ -128,8 +127,6 @@ public class DefineProcessController {
 	public String searchProcessPic(HttpServletRequest request,HttpServletResponse response,String id,String name){
 	
 		//获取资源文件
-		System.out.println("id:"+id);
-		System.out.println("name:"+name);
 		InputStream inputStream=workflowServiceI.findImageInputStream(id.trim(), name.trim());
 		OutputStream outputStream;
 		try {

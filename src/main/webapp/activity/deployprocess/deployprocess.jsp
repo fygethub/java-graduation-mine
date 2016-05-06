@@ -65,12 +65,12 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 							console.log(time);
 							return time;
 						}},
-					{field:'cz',title:'操作',width:100,formatter:function(value,row,index){
+					/* {field:'cz',title:'操作',width:100,formatter:function(value,row,index){
 						var str="";
 						str+=$.formatString("<a href='' onclick=deleteFun_deploy({0})>删除</a>",row.id);
 						return  str;
 						
-					}},
+					}}, */
 			] ],
 			toolbar : '#toolbar',
 			onLoadSuccess : function() {
@@ -116,7 +116,7 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 						}
 					},
 				]],
-				toolbar : '#toolbar',
+				//toolbar : '#toolbar',
 				onLoadSuccess : function() {
 					//$('#searchForm table').show();
 					parent.$.messager.progress('close');
@@ -197,14 +197,14 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 	}
 </script>
 	<div id="menu" class="easyui-menu" style="width: 120px; display: none;">
-			<div onclick="addFun();" data-options="iconCls:'pencil_add'">增加</div>
+			<!-- <div onclick="addFun();" data-options="iconCls:'pencil_add'">增加</div> -->
 			<div onclick="deleteFun();" data-options="iconCls:'pencil_delete'">删除</div>
-			<div onclick="editFun();" data-options="iconCls:'pencil'">编辑</div>
+			<!-- <div onclick="editFun();" data-options="iconCls:'pencil'">编辑</div> -->
 	</div>
-	<div id="toolbar" style="display: none;">
+	<!-- <div id="toolbar" style="display: none;">
 		<a onclick="addFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'pencil_add'">添加</a>
 		<a onclick="defineGrid.datagrid('reload');" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'transmit'">刷新</a>
-	</div>
+	</div> -->
 	
 	<%  
       out=pageContext.pushBody();  

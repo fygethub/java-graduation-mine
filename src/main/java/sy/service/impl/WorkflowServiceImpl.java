@@ -18,22 +18,36 @@ import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.form.TaskFormData;
+import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.impl.identity.Authentication;
+import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
+import org.activiti.engine.impl.pvm.PvmTransition;
+import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import sy.dao.LeaveBillDaoI;
+import sy.dao.UserDaoI;
 import sy.model.LeaveBill;
+import sy.model.Tuser;
+import sy.pageModel.DataGrid;
 import sy.pageModel.SessionInfo;
+import sy.pageModel.activiti.PageLeaveBill;
 import sy.pageModel.activiti.ProcessDefineModel;
 import sy.pageModel.activiti.ProcessDeployModel;
+import sy.pageModel.activiti.TaskPage;
 import sy.pageModel.activiti.WorkflowModel;
 import sy.service.WorkflowServiceI;
+import sy.util.ClobUtil;
 import sy.util.ConfigUtil;
 
 @Service
@@ -58,15 +72,14 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 	@Resource
 	LeaveBillDaoI leaveBillDaoI;
 	
+	@Resource
+	UserDaoI userDaoI;
+	
 	/**部署流程定义*/
 	@Override
 	public boolean saveNewDeploye(File file, String filename) {
 		// TODO Auto-generated method stub
-		logger.info("部署流程定义");
-		String fileTypeName=file.getName().substring(file.getName().lastIndexOf(".")+1);
-		if (fileTypeName.equals("zip")) {
-			return false;
-		}else {
+			logger.info("部署流程定义");
 			ZipInputStream zipInputStream;
 			try {
 			zipInputStream = new ZipInputStream(new FileInputStream(file));
@@ -84,8 +97,6 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 				e.printStackTrace();
 				return false;
 			}
-		}
-		
 		
 	}
 
@@ -183,7 +194,7 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 		//1：获取请假单ID，使用请假单ID，查询请假单的对象LeaveBill
 		//更新请假单的请假状态从0变成1（初始录入-->审核中）
 			
-				Long id = workflowModel.getId();
+				String id = workflowModel.getId();
 				LeaveBill leaveBill = leaveBillDaoI.get(LeaveBill.class, id);
 				leaveBill.setState(1);
 				
@@ -198,8 +209,8 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 			Map<String, Object> variables = new HashMap<String,Object>();
 			variables.put("inputUser",sessionInfo.getName());//表示惟一用户
 			/**
-			 * 3：	(1)使用流程变量设置字符串（格式：LeaveBill.id的形式），通过设置，让启动的流程（流程实例）关联业务
-	   				(2)使用正在执行对象表中的一个字段BUSINESS_KEY（Activiti提供的一个字段），让启动的流程（流程实例）关联业务
+			 	(1)使用流程变量设置字符串（格式：LeaveBill.id的形式），通过设置，让启动的流程（流程实例）关联业务
+	   			(2)使用正在执行对象表中的一个字段BUSINESS_KEY（Activiti提供的一个字段），让启动的流程（流程实例）关联业务
 			 */
 			String objId=key+"."+id;
 			variables.put("objId", objId);
@@ -212,7 +223,7 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 	public List<Task> findTaskListByName(String name) {
 		// TODO Auto-generated method stub
 		List<Task> list=taskService.createTaskQuery()
-							.taskAssignee(name)//指定个人任务办理人
+							.taskAssignee(name)//查询个人任务办理人
 							.orderByTaskCreateTime().asc()
 							.list();
 		if (list ==null && list.size()==0) {
@@ -220,42 +231,200 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 		}
 		return list;
 	}
+	
+	/**使用当前用户名查询正在执行的任务表，获取当前任务的集合LIST<Task> 封装成datagrid*/
+	@Override
+	public DataGrid findTaskListByName_listpage(String name, int page, int rows) {
+		// TODO Auto-generated method stub
+			DataGrid dataGrid=new DataGrid();
+			List<Task> list=taskService.createTaskQuery()
+					.taskAssignee(name)//查询个人任务办理人
+					.orderByTaskCreateTime()
+					.asc()
+					.listPage((page-1)*rows, rows);
+			if(list!=null && list.size() >0){
+				Long long1=(long) findTaskListByName(name).size();
+				
+				dataGrid.setTotal(long1);
+				
+			}
+			List<TaskPage> list2=new ArrayList<TaskPage>();
+			for(Task task:list){
+				TaskPage taskPage=new TaskPage();
+				BeanUtils.copyProperties(task, taskPage);
+				list2.add(taskPage);
+			}
+			dataGrid.setRows(list2);
+			return dataGrid;
+	}
 
-	/***/
+	/**使用任务ID，获取当前任务节点中对应的Form key中的连接的值*/
 	@Override
 	public String findTaskFormKeyByTaskId(String taskId) {
 		// TODO Auto-generated method stub
-		return null;
+		TaskFormData formData=formService.getTaskFormData(taskId);
+		//获取form key  的值
+		String url =formData.getFormKey();
+		return url;
 	}
 
 	/**使用任务ID，查找请假单ID,从而获取请假信息*/
 	@Override
-	public LeaveBill findLeaveBillByTaskId(String taskId) {
-		// TODO Auto-generated method stub
-		return null;
+	public PageLeaveBill findLeaveBillByTaskId(String taskId) {
+		Task task = taskService.createTaskQuery()//
+				.taskId(taskId)//使用任务ID查询
+				.singleResult();
+		//2：使用任务对象Task获取流程实例ID
+		String processInstanceId = task.getProcessInstanceId();
+		//3：使用流程实例ID，查询正在执行的执行对象表，返回流程实例对象
+		ProcessInstance pi = runtimeService.createProcessInstanceQuery()//
+				.processInstanceId(processInstanceId)//使用流程实例ID查询
+				.singleResult();
+		//4：使用流程实例对象获取BUSINESS_KEY
+				String buniness_key = pi.getBusinessKey();
+		//5：获取BUSINESS_KEY对应的主键ID，使用主键ID，查询请假单对象（LeaveBill.1）
+				String id = "";
+				if(StringUtils.isNotBlank(buniness_key)){
+					//截取字符串，取buniness_key小数点的第2个值
+					id = buniness_key.split("\\.")[1];
+				}
+			//查询请假单对象
+			//使用hql语句：from LeaveBill o where o.id=1
+			LeaveBill leaveBill = leaveBillDaoI.get(LeaveBill.class, id);
+			
+			PageLeaveBill pageLeaveBill=new PageLeaveBill();
+			BeanUtils.copyProperties(leaveBill, pageLeaveBill,new String[]{"user","remark"});
+			pageLeaveBill.setRemark(ClobUtil.getString(leaveBill.getRemark()));
+			pageLeaveBill.setUser(leaveBill.getUser().getName());
+			return pageLeaveBill;
+				
 	}
 
 	/**已知任务ID，查询ProcessDefintionEntiy对象，从而获取当前任务完成之后的连线名称，并放置到List<String>集合中*/
 	@Override
 	public List<String> findOutComeListByTaskId(String taskId) {
 		// TODO Auto-generated method stub
+		List<String > list =new ArrayList<String>();
 		
-		//
-		return null;
+		//使用任务Id查询任务对象
+		Task  task=taskService.createTaskQuery()
+								.taskId(taskId)
+								.singleResult();
+		String processDefinitionId=task.getProcessDefinitionId();
+		//流程定义对象 就是pbmn 文件
+		ProcessDefinitionEntity pEntity=(ProcessDefinitionEntity) repositoryService.getProcessDefinition(processDefinitionId);
+		//使用任务对象获取流程实例Id
+		String processInstanceId=task.getProcessInstanceId();
+		ProcessInstance pi=runtimeService.createProcessInstanceQuery()
+											.processInstanceId(processInstanceId)
+											.singleResult();
+		//获取当前活动的id
+		String activityId=pi.getActivityId();
+		//获取当前活动
+		ActivityImpl activityImpl=pEntity.findActivity(activityId);
+		
+		//获取当前活动之后的连线
+		List<PvmTransition> pvmTransitions=activityImpl.getOutgoingTransitions();
+		if (pvmTransitions !=null && pvmTransitions.size()>0) {
+			for(PvmTransition pvmTransition:pvmTransitions){
+				String name=(String) pvmTransition.getProperty("name");
+				if (StringUtils.isNotBlank(name)) {
+					list.add(name);
+				}else {
+					list.add("默认提交");
+				}
+			}
+		}
+		return list;
 	}
 
 	/**指定连线的名称完成任务*/
 	@Override
-	public void saveSubmitTask(WorkflowModel workflowModel) {
+	public void saveSubmitTask(WorkflowModel workflowModel,String id) {
 		// TODO Auto-generated method stub
+		String taskId=workflowModel.getTaskId();
+		String outcome=workflowModel.getOutcome();
+		Tuser tuser=userDaoI.get(Tuser.class, id);
 		
+		/**完成之前添加批注，向act_hi_commont表中添加数据
+		 */
+		Task task=taskService.createTaskQuery()
+								.taskId(taskId)
+								.singleResult();
+		
+		String processInstanceId =task.getProcessInstanceId();
+
+		//		完成之前，添加一个批注信息用于记录当前申请人的一些审核信息
+		/**添加批注的时候，由于activity底层代码是使用：
+		 *   String userId = Authentication.getAuthenticatedUserId();
+    		 CommentEntity comment = new CommentEntity();
+    		comment.setUserId(userId);
+    		所以需要添加user
+		 */
+		
+		Authentication.setAuthenticatedUserId(tuser.getName());
+		taskService.addComment(taskId, processInstanceId, workflowModel.getComment());
+		
+		Map<String, Object> variables =new HashMap<String, Object>();
+		if(outcome != null && !outcome.equals("默认提交")){
+			variables.put("outcome", outcome);
+		}
+		
+		//通过当前人添加下一个办理人
+		Tuser manager=tuser.getManager();
+		
+		if (manager != null) {
+			logger.debug("上级领导存在是："+manager.getName());
+			variables.put("inputUser",manager.getName());
+		}else {
+			logger.debug("上级领导不存在");
+			variables.put("inputUser",tuser.getName());
+		}
+		
+		taskService.complete(taskId,variables);
+		
+		/**5.完成之后判断流程是否结束
+		 * 如果结束跟前请假表单的状态从1变成2（审核完成）
+		 * */
+		ProcessInstance processInstance=	runtimeService.createProcessInstanceQuery()
+						.processInstanceId(processInstanceId)
+						.singleResult();
+		
+		
+		if(processInstance ==null){
+			//更新状态
+			LeaveBill leaveBill=leaveBillDaoI.get(LeaveBill.class, id);
+			leaveBill.setState(2);
+		}
 	}
 
 	/**获取批注信息，传递的是当前任务ID，获取历史任务ID对应的批注*/
 	@Override
 	public List<Comment> findCommentByTaskId(String taskId) {
 		// TODO Auto-generated method stub
-		return null;
+		List<Comment> comlist =new ArrayList<Comment>();
+		//使用当前的任务id查询当前流程对应的历史任务
+		Task task=taskService.createTaskQuery()
+							.taskId(taskId)
+							.singleResult();
+		//获取流程实例id
+		String processInstanceId = task.getProcessInstanceId();
+		//使用流程实例id 查询历史任务 获取历史任务对应的每个id
+		List<HistoricTaskInstance> hislist=historyService.createHistoricTaskInstanceQuery()
+						.processInstanceId(processInstanceId)
+						.list();
+		
+		if(hislist != null && hislist.size()>0){
+			for(HistoricTaskInstance h:hislist){
+				String hisId=h.getId();
+				//获取批注信息
+				List<Comment> list=taskService.getTaskComments(hisId);
+				comlist.addAll(list);
+			}
+		}
+		
+					
+		return comlist;
 	}
 
 	/***/
@@ -278,6 +447,8 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 
 
 	

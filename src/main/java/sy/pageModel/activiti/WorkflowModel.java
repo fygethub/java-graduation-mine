@@ -8,7 +8,7 @@ public class WorkflowModel {
 	private File file;		//流程定义部署文件
 	private String filename;//流程定义名称
 	
-	private Long id;//申请单ID
+	private String id;//申请单ID
 	
 	private String deploymentId;//部署对象ID
 	private String imageName;	//资源文件名称
@@ -28,10 +28,11 @@ public class WorkflowModel {
 	public void setFilename(String filename) {
 		this.filename = filename;
 	}
-	public Long getId() {
+	
+	public String getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getDeploymentId() {

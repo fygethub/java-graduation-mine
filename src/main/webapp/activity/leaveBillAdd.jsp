@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <script>
 	$(document).ready(function(){
-		var editor;
+	/* 	var editor;
 		window.setTimeout(function() {	
 			editor=KindEditor.create('#noteAdd',{
 				width:'680px',
@@ -14,13 +14,13 @@
 				
 			})
 			parent.$.messager.progress('close');
-		},1)
+		},1) */
 		
 		$('#form').form({
 			url:'${pageContext.request.contextPath}/leaveBillController/add',
 			dataType:'json',
 			 onSubmit:function(){
-				editor.sync();
+				//editor.sync();
 				 parent.$.messager.progress({
 					title : '提示',
 					text : '数据处理中，请稍后....'
@@ -58,7 +58,7 @@
 					<th>编号</th>
 					<td><input name="id" type="text" class="span2" value="${pageLeaveBill.id}" readonly="readonly"></td>
 					<th>请假人</th>
-					<td><input name="name" type="text" class="easyui-validatebox span2" data-options="required:true" value=""></td>
+					<td><input name="name" type="text" readOnly class="easyui-validatebox span2" data-options="required:true" value="${sessionInfo.name }"></td>
 				</tr>
 				<tr>
 					<th>请假天数</th>
@@ -66,10 +66,10 @@
 					<th>请假事由</th>
 					<td><input name="content" type="text"  class="easyui-validatebox span2" data-options="required:true" value=""></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<th>描述</th>
 					<td colspan="3"><textarea name="remark" id="noteAdd" cols="50" rows="5" style="visibility: hidden;"></textarea></td>
-				</tr>
+				</tr> -->
 			</table>
 		</form>
 	</div>

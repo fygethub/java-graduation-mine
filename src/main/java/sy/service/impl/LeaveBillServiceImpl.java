@@ -76,7 +76,7 @@ public class LeaveBillServiceImpl implements LeaveBillServiceI{
 				pageLeaveBill.setUser(leaveBill.getUser().getName());
 				pageLeaveBill.setRemark(ClobUtil.getString(leaveBill.getRemark()));
 				//pageLeaveBill.setLeaveDate(leaveBill.getLeaveDate());
-				System.out.println(pageLeaveBill.toString());
+				//System.out.println(pageLeaveBill.toString());
 				
 				leaveBills.add(pageLeaveBill);
 				
@@ -123,8 +123,6 @@ public class LeaveBillServiceImpl implements LeaveBillServiceI{
 		params.put("id", user.getId());
 		Tuser tuser=userDaoI.get("from Tuser t where t.id = :id",params);
 		leaveBill.setUser(tuser);
-		System.out.println(leaveBill.toString());
-		System.out.println(tuser.toString());
 		
 		leaveBillDaoI.save(leaveBill);
 	}
