@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#tt").tree({
-			url:'${pageContext.request.contextPath}/roleController/allTree.do',
+			url:'${pageContext.request.contextPath}/roleController/allTree',
 		})
 	})
 

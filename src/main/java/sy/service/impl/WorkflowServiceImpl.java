@@ -551,7 +551,15 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 					hInstances.add(historyInstance);
 				}
 			}
-			dataGrid.setRows(hInstances);
+			int page=ph.getPage();
+			int rows=ph.getRows();
+			List<HistoryInstance> hInstances1=new ArrayList<HistoryInstance>();
+			for(int i=(page-1)*rows ; i<rows*page ;i++){
+				if (hInstances.size() > i) {
+					hInstances1.add(hInstances.get(i));
+				}
+			}
+			dataGrid.setRows(hInstances1);
 			dataGrid.setTotal(Long.valueOf(hInstances.size()));
 			return dataGrid;
 		}

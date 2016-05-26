@@ -55,6 +55,7 @@ $(function(){
 			$(this).datagrid('tooltip');
 		}
 	})
+	
 })
 
 function hisearch(){
