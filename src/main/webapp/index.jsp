@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>sypro_1</title>
+<title>fyGraduation</title>
 <jsp:include page="inc.jsp"></jsp:include>
 <script type="text/javascript">
 	var index_tabs;

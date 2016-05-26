@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>sypro_1 Init Database</title>
+<title>fyGraduation Init Database</title>
 <jsp:include page="inc.jsp"></jsp:include>
 <script type="text/javascript">
-	//location.replace('${pageContext.request.contextPath}/initController/init');
+	location.replace('${pageContext.request.contextPath}/initController/init');
 </script>
 </head>
 <body>init database

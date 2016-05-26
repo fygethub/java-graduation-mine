@@ -61,7 +61,7 @@
 				formatter : function(value, row, index) {
 					return '******';
 				}
-			}, {
+			},/*  {
 				field : 'createdatetime',
 				title : '创建时间',
 				width : 150,
@@ -70,8 +70,11 @@
 				field : 'modifydatetime',
 				title : '最后修改时间',
 				width : 150,
-				sortable : true
-			}, {
+				sortable : true,
+				formatter:function(value, row, index){
+					return new Date(row.modifydatetime);
+				}
+			}, */ {
 				field : 'roleIds',
 				title : '所属角色ID',
 				width : 150,
@@ -79,6 +82,10 @@
 			}, {
 				field : 'roleNames',
 				title : '所属角色名称',
+				width : 150
+			}, {
+				field : 'managerName',
+				title : '所属用户',
 				width : 150
 			}, {
 				field : 'action',
@@ -319,21 +326,22 @@
 </head>
 <body>
 	<div class="easyui-layout" data-options="fit : true,border : false">
-		<div data-options="region:'north',title:'查询条件',border:false" style="height: 160px; overflow: hidden;">
+		<div data-options="region:'north',title:'查询条件',border:false" style="height: 80px; overflow: hidden;">
 			<form id="searchForm">
 				<table class="table table-hover table-condensed" style="display: none;">
 					<tr>
 						<th>登录名</th>
 						<td><input name="name" placeholder="可以模糊查询登录名" class="span2" /></td>
+						<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'brick_add',plain:true" onclick="searchFun();">查询</a><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'brick_delete',plain:true" onclick="cleanFun();">清空</a></td>
 					</tr>
-					<tr>
+					 <!-- <tr>
 						<th>创建时间</th>
-						<td><input class="span2" name="createdatetimeStart" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" />至<input class="span2" name="createdatetimeEnd" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" /></td>
+						<td><input class="span2" style="cursor: pointer;" name="createdatetimeStart" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" />至<input class="span2" style="cursor: pointer;"  name="createdatetimeEnd" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" /></td>
 					</tr>
 					<tr>
 						<th>最后修改时间</th>
-						<td><input class="span2" name="modifydatetimeStart" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" />至<input class="span2" name="modifydatetimeEnd" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" /></td>
-					</tr>
+						<td><input class="span2" style="cursor: pointer;"  name="modifydatetimeStart" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" />至<input class="span2" style="cursor: pointer;"  name="modifydatetimeEnd" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly="readonly" /></td>
+					</tr>  -->
 				</table>
 			</form>
 		</div>
@@ -351,7 +359,7 @@
 		<c:if test="${fn:contains(sessionInfo.resourceList, '/userController/batchDelete')}">
 			<a onclick="batchDeleteFun();" href="javascript:void(0);" class="easyui-linkbutton" data-options="plain:true,iconCls:'delete'">批量删除</a>
 		</c:if>
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'brick_add',plain:true" onclick="searchFun();">过滤条件</a><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'brick_delete',plain:true" onclick="cleanFun();">清空条件</a>
+		
 	</div>
 
 	<div id="menu" class="easyui-menu" style="width: 120px; display: none;">

@@ -78,6 +78,9 @@ public class UserServiceImpl implements UserServiceI {
 			for (Tuser t : l) {
 				User u = new User();
 				BeanUtils.copyProperties(t, u);
+				if (t.getManager() != null) {
+					u.setManagerName(t.getManager().getName());
+				}
 				Set<Trole> roles = t.getTroles();
 				if (roles != null && !roles.isEmpty()) {
 					String roleIds = "";
@@ -154,13 +157,23 @@ public class UserServiceImpl implements UserServiceI {
 			userDao.save(u);
 		}
 	}
-
+	
+	@Override
+	public List<Tuser> getListUser() {
+		// TODO Auto-generated method stub
+		
+		return userDao.find("from Tuser");
+	}
+	
 	@Override
 	public User get(String id) {
 		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		Tuser t = userDao.get("select distinct t from Tuser t left join fetch t.troles role where t.id = :id", params);
 		User u = new User();
+		if(t.getManager() != null){
+			u.setManagerId(t.getManager().getId());
+		}
 		BeanUtils.copyProperties(t, u);
 		if (t.getTroles() != null && !t.getTroles().isEmpty()) {
 			String roleIds = "";
@@ -192,6 +205,8 @@ public class UserServiceImpl implements UserServiceI {
 		} else {
 			Tuser u = userDao.get(Tuser.class, user.getId());
 			BeanUtils.copyProperties(user, u, new String[] { "pwd", "createdatetime" });
+			Tuser m = userDao.get(Tuser.class, user.getManagerId());
+			u.setManager(m);
 			u.setModifydatetime(new Date());
 		}
 	}
@@ -319,5 +334,7 @@ public class UserServiceImpl implements UserServiceI {
 		}
 		return l;
 	}
+
+	
 
 }

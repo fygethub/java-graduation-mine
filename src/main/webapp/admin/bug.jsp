@@ -56,12 +56,22 @@
 				field : 'createdatetime',
 				title : '创建时间',
 				width : 150,
-				sortable : true
+				sortable : true,
+				formatter:function(value, row, index){
+					var date=new Date(value);
+					
+					return date.toLocaleDateString() +" "+date.toTimeString().split(" ")[0];
+				}
 			}, {
 				field : 'modifydatetime',
 				title : '最后修改时间',
 				width : 150,
-				sortable : true
+				sortable : true,
+				formatter:function(value, row, index){
+					var date=new Date(value);
+					
+					return date.toLocaleDateString() +" "+date.toTimeString().split(" ")[0];
+				}
 			}, {
 				field : 'typeId',
 				title : 'BUG类型ID',
@@ -210,14 +220,14 @@
 								</c:forEach>
 						</select></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<th>创建时间</th>
 						<td colspan="3"><input class="span2" name="createdatetimeStart" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />至<input class="span2" name="createdatetimeEnd" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></td>
 					</tr>
 					<tr>
 						<th>最后修改时间</th>
 						<td colspan="3"><input class="span2" name="modifydatetimeStart" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" />至<input class="span2" name="modifydatetimeEnd" placeholder="点击选择时间" onclick="WdatePicker({readOnly:true,dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></td>
-					</tr>
+					</tr> -->
 				</table>
 			</form>
 		</div>

@@ -5,9 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.zip.ZipInputStream;
 
 import javax.annotation.Resource;
@@ -19,7 +21,12 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.form.TaskFormData;
+import org.activiti.engine.history.HistoricActivityInstance;
+import org.activiti.engine.history.HistoricDetail;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.history.HistoricVariableInstance;
+import org.activiti.engine.impl.cmd.ActivateProcessInstanceCmd;
 import org.activiti.engine.impl.identity.Authentication;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.pvm.PvmTransition;
@@ -38,9 +45,12 @@ import org.springframework.stereotype.Service;
 import sy.dao.LeaveBillDaoI;
 import sy.dao.UserDaoI;
 import sy.model.LeaveBill;
+import sy.model.Trole;
 import sy.model.Tuser;
 import sy.pageModel.DataGrid;
+import sy.pageModel.PageHelper;
 import sy.pageModel.SessionInfo;
+import sy.pageModel.activiti.HistoryInstance;
 import sy.pageModel.activiti.PageLeaveBill;
 import sy.pageModel.activiti.ProcessDefineModel;
 import sy.pageModel.activiti.ProcessDeployModel;
@@ -176,7 +186,6 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 	public InputStream findImageInputStream(String deploymentId,
 			String imageName) {
 		// TODO Auto-generated method stub
-		
 		return repositoryService.getResourceAsStream(deploymentId, imageName);
 	}
 
@@ -213,7 +222,6 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 	   			(2)使用正在执行对象表中的一个字段BUSINESS_KEY（Activiti提供的一个字段），让启动的流程（流程实例）关联业务
 			 */
 			String objId=key+"."+id;
-			variables.put("objId", objId);
 			//4：使用流程定义的key，启动流程实例，同时设置流程变量，同时向正在执行的执行对象表中的字段BUSINESS_KEY添加业务数据，同时让流程关联业务
 			runtimeService.startProcessInstanceByKey(key,objId,variables);
 	}
@@ -393,7 +401,7 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 		
 		if(processInstance ==null){
 			//更新状态
-			LeaveBill leaveBill=leaveBillDaoI.get(LeaveBill.class, id);
+			LeaveBill leaveBill=leaveBillDaoI.get(LeaveBill.class, workflowModel.getId());
 			leaveBill.setState(2);
 		}
 	}
@@ -429,28 +437,167 @@ public class WorkflowServiceImpl implements WorkflowServiceI{
 
 	/***/
 	@Override
-	public List<Comment> findCommentByLeaveBillId(Long id) {
+	public List<Comment> findCommentByLeaveBillId(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		LeaveBill leaveBill=leaveBillDaoI.get(LeaveBill.class, id);
+		//获取对象的名称
+		String objectName = leaveBill.getClass().getSimpleName();
+		//组织流程表中的字段中的值
+		String objId = objectName+"."+id;
+		/**1:使用历史的流程实例查询，返回历史的流程实例对象，获取流程实例ID*/
+		HistoricProcessInstance hpi = historyService.createHistoricProcessInstanceQuery()//对应历史的流程实例表
+						.processInstanceBusinessKey(objId)//使用BusinessKey字段查询
+						.singleResult();
+		
+		
+		/**2:使用历史的流程变量查询，返回历史的流程变量的对象，获取流程实例ID*/
+		/*HistoricVariableInstance hvi=historyService.createHistoricVariableInstanceQuery()
+													.variableValueEquals("objId", objectName)
+													.singleResult();*/
+		//流程实例ID
+		List<Comment> list=null;
+		if(hpi != null ){
+			//流程实例ID
+			String processInstanceId = hpi.getId();
+			//String processInstanceId=hvi.getProcessInstanceId();
+			list=taskService.getProcessInstanceComments(processInstanceId);
+		}
+		return list;
 	}
 
 	/***/
 	@Override
 	public ProcessDefinition findProcessDefinitionByTaskId(String taskId) {
 		// TODO Auto-generated method stub
-		return null;
+		Task task=taskService.createTaskQuery()
+								.taskId(taskId)
+								.singleResult();
+		String processDefineId=task.getProcessDefinitionId();
+		
+		ProcessDefinition processDefinition=repositoryService.createProcessDefinitionQuery()
+						.processDefinitionId(processDefineId)
+						.singleResult();
+		
+		
+		return processDefinition;
 	}
 
 	/***/
 	@Override
 	public Map<String, Object> findCoordingByTask(String taskId) {
 		// TODO Auto-generated method stub
-		return null;
+		//使用任务id查询任务对象
+		Task task = taskService.createTaskQuery().taskId(taskId).singleResult();
+		String processDefineId = task.getProcessDefinitionId();
+
+		
+		ProcessDefinitionEntity processDefinitionEntity=	(ProcessDefinitionEntity) repositoryService.getProcessDefinition(processDefineId);
+		
+		//使用流程实例Id查询流程实例表 获取真正执行的执行对象，获取当前活动对于的流程实例对象
+		String processInstanceId=task.getProcessInstanceId();
+		ProcessInstance pInstance=runtimeService.createProcessInstanceQuery()
+			.processInstanceId(processInstanceId)
+			.singleResult();
+		//获取当前活动id
+		String activityId=pInstance.getActivityId();
+		
+		//获取当前活动对象
+		ActivityImpl activityImpl=processDefinitionEntity.findActivity(activityId);
+		//获取坐标
+		Map<String, Object> map=new HashMap<String, Object>();
+		map.put("x", activityImpl.getX());
+		map.put("y", activityImpl.getY());
+		map.put("height", activityImpl.getHeight());
+		map.put("width", activityImpl.getWidth());
+		return map;
+	}
+
+	/**
+	 * 查询历史流程实例
+	 * */
+	@Override
+	public DataGrid findHistoryDefineByUser(SessionInfo sessionInfo,
+			PageHelper ph) {
+		// TODO Auto-generated method stub
+		String userid=sessionInfo.getId();
+		String userName=sessionInfo.getName();
+		List<HistoricActivityInstance> historicDetails=historyService.createHistoricActivityInstanceQuery()
+																		.list();
+		List<HistoricActivityInstance> hActivityInstances=historyService.createHistoricActivityInstanceQuery()
+																		.orderByHistoricActivityInstanceStartTime()
+																		.desc()
+																		.listPage(ph.getRows()*(ph.getPage()-1), ph.getRows());
+		Tuser tuser=userDaoI.get(Tuser.class, userid);	
+		Set<Trole> troles=	tuser.getTroles();
+		boolean isAdmin=false;
+		for (Trole t:troles) {
+			if(t.getName().equals("超管")){
+				isAdmin =true;
+			}
+		}
+		//如果是管理员则把所有的历史流程实例提交到前台，否则就提交当前人的历史流程实例
+		
+		//添加查询相同的流程实例信息
+		List<HistoryInstance> hInstances=new ArrayList<HistoryInstance>();
+		String seachString=ph.getSearch();
+		if(seachString != null && !seachString.equals(""))
+		{
+			DataGrid dataGrid=new DataGrid();
+			
+			for(HistoricActivityInstance h:historicDetails){
+				HistoryInstance historyInstance=new HistoryInstance();
+				if (isVarible(h, seachString)) {
+					BeanUtils.copyProperties(h, historyInstance);
+					hInstances.add(historyInstance);
+				}
+			}
+			dataGrid.setRows(hInstances);
+			dataGrid.setTotal(Long.valueOf(hInstances.size()));
+			return dataGrid;
+		}
+		else {
+			
+		
+		
+			for (HistoricActivityInstance h:hActivityInstances) {
+				HistoryInstance historyInstance=new HistoryInstance();
+				if (isAdmin) {
+					BeanUtils.copyProperties(h, historyInstance);
+					hInstances.add(historyInstance);
+				}else if(historyInstance.getAssignee().equals(userName)) {
+					BeanUtils.copyProperties(h, historyInstance);
+					hInstances.add(historyInstance);
+				}
+			}
+			DataGrid dataGrid=new DataGrid();
+			dataGrid.setRows(hInstances);
+			dataGrid.setTotal(Long.valueOf(historicDetails.size()));
+			return dataGrid;
+		}
 	}
 
 	
 
-
+	public boolean isVarible(HistoricActivityInstance historyInstance,String varible){
+		
+		if (historyInstance.getActivityId() != null  && historyInstance.getActivityId().contains(varible)) {
+			return true;
+		}
+		if (historyInstance.getActivityName() != null  &&  historyInstance.getActivityName().contains(varible)) {
+			return true;
+		}
+		if (historyInstance.getActivityType() != null  && historyInstance.getActivityType().contains(varible)) {
+			return true;
+		}
+		if (historyInstance.getAssignee() != null  && historyInstance.getAssignee().contains(varible)) {
+			return true;
+		}
+		if (historyInstance.getTaskId() != null  && historyInstance.getTaskId().contains(varible)) {
+			return true;
+		}
+		return false;
+	}
+		
 	
 	
 	

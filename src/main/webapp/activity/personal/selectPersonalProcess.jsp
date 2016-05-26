@@ -19,8 +19,8 @@
 			idField : 'id',
 			pageSize : 10,
 			pageList : [ 10, 20, 30, 40, 50 ],
-			//sortName : 'leaveDate',
-			//sortOrder : 'desc',
+		//	sortName : 'leaveDate',
+		//	sortOrder : 'desc',
 			checkOnSelect : false,
 			selectOnCheck : false,
 			nowrap : false,
@@ -30,15 +30,17 @@
 			columns:[[
 		          {field:'id',title:'ID',width:100},
 		          {field:'name',title:'任务名',width:100},
-		          {field:'createTime',title:'时间',width:100,formatter:function(value,row,index){
-		        	  return new Date(row.createTime);
-		          }},
+		          {field:'createTime',title:'时间',width:100,
+						formatter:function(value, row, index){
+							var date=new Date(value);
+							
+							return date.toLocaleDateString() +" "+date.toTimeString().split(" ")[0];						}},
 		          {field:'assignee',title:'办理人',width:100},
 		         {field:'cz',title:'操作',width:150,formatter:function(value,row,index){
 		        	var str='';
 		        	str += $.formatString('<a onclick="doTaskFun(\'{0}\');">办理任务</a>', row.id);
 		        	str += '&nbsp';
-		        	str += $.formatString('<a onclick="lookFun(\'{0}\');">查看当前流程图</a>', row.id);
+		        	str += $.formatString('<a target="_black" href="${pageContext.request.contextPath}/processController/searchProcessPicPage?id={0}">查看当前流程图</a>', row.id);
 		        	return str;
 		         }}
 	          ]],
@@ -58,7 +60,6 @@
 	})
 	
 	function doTaskFun(id){
-		console.log('dotaskFunc');
 		parent.$.messager.progress('close');
 		if(id == undefined){
 			var rows=datagrid.datagrid('getSelections');
@@ -117,11 +118,5 @@
 		</div>
 	</div>
 	
-	
-	<div id="tb">
-		<c:forEach var="outString" items="${outStrings }">
-			<a onclick="outcomeFun('${outString}')" class="easyui-linkbutton" data-options="plain:false">${outString}</a>
-		</c:forEach>
-	</div>
 </body>
 </html>

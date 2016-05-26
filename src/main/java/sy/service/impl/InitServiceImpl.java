@@ -465,7 +465,7 @@ public class InitServiceImpl implements InitServiceI {
 		Tresource wjgl = new Tresource();
 		wjgl.setId("wjgl");
 		wjgl.setName("文件管理");
-		wjgl.setTresourcetype(menuType);
+		wjgl.setTresourcetype(funType);
 		wjgl.setTresource(xtgl);
 		wjgl.setSeq(6);
 		wjgl.setUrl("");
@@ -475,7 +475,7 @@ public class InitServiceImpl implements InitServiceI {
 		Tresource wjglView = new Tresource();
 		wjglView.setId("wjglView");
 		wjglView.setName("浏览服务器文件");
-		wjglView.setTresourcetype(menuType);
+		wjglView.setTresourcetype(funType);
 		wjglView.setTresource(wjgl);
 		wjglView.setSeq(1);
 		wjglView.setUrl("/fileController/fileManage");
@@ -520,26 +520,290 @@ public class InitServiceImpl implements InitServiceI {
 		processtTresource.setSeq(1);
 		processtTresource.setIcon("server_chart");
 		processtTresource.setTresource(xtgl);
+		resourceDao.saveOrUpdate(processtTresource);
+
 		
-		/**发起流程	*/
-		Tresource startProcessTresource=new Tresource();
-		startProcessTresource.setId("startProcessTresource");
-		startProcessTresource.setName("发起申请");
-		startProcessTresource.setTresourcetype(menuType);
-		startProcessTresource.setUrl("");
-		startProcessTresource.setSeq(1);
-		startProcessTresource.setIcon("");
-		startProcessTresource.setTresource(processtTresource);
+		/**历史信息查询*/
 		
-		/**流程审批	*/
-		Tresource approveProcessTresource=new Tresource();
-		approveProcessTresource.setId("approveProcessTresource");
-		approveProcessTresource.setName("流程审批");
-		approveProcessTresource.setTresourcetype(menuType);
-		approveProcessTresource.setUrl("");
-		approveProcessTresource.setSeq(1);
-		approveProcessTresource.setIcon("");
-		approveProcessTresource.setTresource(processtTresource);
+		Tresource processthistroyTresource=new Tresource();
+		processthistroyTresource.setId("processthistroyTresource");
+		processthistroyTresource.setName("历史信息查询");
+		processthistroyTresource.setTresourcetype(menuType);
+		processthistroyTresource.setUrl("");
+		processthistroyTresource.setSeq(1);
+		processthistroyTresource.setIcon("server_chart");
+		processthistroyTresource.setTresource(processtTresource);
+		resourceDao.saveOrUpdate(processthistroyTresource);
+		
+		/**流程部署*/
+		Tresource processtdeployTresource=new Tresource();
+		processtdeployTresource.setId("processtdeployTresource");
+		processtdeployTresource.setName("流程部署");
+		processtdeployTresource.setTresourcetype(menuType);
+		processtdeployTresource.setUrl("/processController/deploy");
+		processtdeployTresource.setSeq(1);
+		processtdeployTresource.setIcon("server_chart");
+		processtdeployTresource.setTresource(processtTresource);
+		resourceDao.saveOrUpdate(processtdeployTresource);
+		
+		Tresource processDefineList=new Tresource();
+		processDefineList.setId("processDefineList");
+		processDefineList.setName("流程定义list");
+		processDefineList.setTresourcetype(funType);
+		processDefineList.setUrl("/processController/processDefineList");
+		processDefineList.setSeq(1);
+		processDefineList.setIcon("server_chart");
+		processDefineList.setTresource(processtdeployTresource);
+		resourceDao.saveOrUpdate(processDefineList);
+		
+		//上传提交流程
+		Tresource upload=new Tresource();
+		upload.setId("upload");
+		upload.setName("上传提交流程");
+		upload.setTresourcetype(funType);
+		upload.setUrl("/processController/upload");
+		upload.setSeq(1);
+		upload.setIcon("server_chart");
+		upload.setTresource(processtdeployTresource);
+		resourceDao.saveOrUpdate(upload);
+		
+		//删除流程
+		Tresource delete=new Tresource();
+		delete.setId("delete");
+		delete.setName("删除流程");
+		delete.setTresourcetype(funType);
+		delete.setUrl("/processController/processdel");
+		delete.setSeq(1);
+		delete.setIcon("server_chart");
+		delete.setTresource(processtdeployTresource);
+		resourceDao.saveOrUpdate(delete);
+		
+		//流程部署表
+		
+		Tresource processgrid=new Tresource();
+		processgrid.setId("processgrid");
+		processgrid.setName("流程部署表");
+		processgrid.setTresourcetype(funType);
+		processgrid.setUrl("/processController/processdeployList");
+		processgrid.setSeq(1);
+		processgrid.setIcon("server_chart");
+		processgrid.setTresource(processtdeployTresource);
+		resourceDao.saveOrUpdate(processgrid);
+		
+		//查看流程图
+		
+		Tresource processpic=new Tresource();
+		processpic.setId("processpic");
+		processpic.setName("查看流程图");
+		processpic.setTresourcetype(funType);
+		processpic.setUrl("/processController/searchProcessPic");
+		processpic.setSeq(1);
+		processpic.setIcon("server_chart");
+		processpic.setTresource(processtdeployTresource);
+		resourceDao.saveOrUpdate(processpic);
+		
+		/**请假流程*/
+		Tresource processmanager=new Tresource();
+		processmanager.setId("processpic");
+		processmanager.setName("请假流程");
+		processmanager.setTresourcetype(menuType);
+		processmanager.setUrl("/leaveBillController/manager");
+		processmanager.setSeq(1);
+		processmanager.setIcon("server_chart");
+		processmanager.setTresource(processtTresource);
+		resourceDao.saveOrUpdate(processmanager);
+		
+		
+		//查看流程
+		Tresource processview=new Tresource();
+		processview.setId("processview");
+		processview.setName("查看流程");
+		processview.setTresourcetype(funType);
+		processview.setUrl("/personalProcessController/handleViewPage");
+		processview.setSeq(1);
+		processview.setIcon("server_chart");
+		processview.setTresource(processmanager);
+		resourceDao.saveOrUpdate(processview);
+		
+		//添加
+		Tresource add=new Tresource();
+		add.setId("add");
+		add.setName("添加");
+		add.setTresourcetype(funType);
+		add.setUrl("/leaveBillController/add");
+		add.setSeq(1);
+		add.setIcon("server_chart");
+		add.setTresource(processmanager);
+		resourceDao.saveOrUpdate(add);
+		
+		//删除
+		Tresource del=new Tresource();
+		del.setId("del");
+		del.setName("删除");
+		del.setTresourcetype(funType);
+		del.setUrl("/leaveBillController/delete");
+		del.setSeq(1);
+		del.setIcon("server_chart");
+		del.setTresource(processmanager);
+		resourceDao.saveOrUpdate(del);
+		
+		//添加请假页面
+		Tresource addpage=new Tresource();
+		addpage.setId("addpage");
+		addpage.setName("添加请假页面");
+		addpage.setTresourcetype(funType);
+		addpage.setUrl("/leaveBillController/leaveBillAddpage");
+		addpage.setSeq(1);
+		addpage.setIcon("server_chart");
+		addpage.setTresource(processmanager);
+		resourceDao.saveOrUpdate(addpage);
+		
+		//查看流程图
+		Tresource viewpic=new Tresource();
+		viewpic.setId("viewpic");
+		viewpic.setName("查看流程图");
+		viewpic.setTresourcetype(funType);
+		viewpic.setUrl("/processController/deploysearchProcessPic");
+		viewpic.setSeq(1);
+		viewpic.setIcon("server_chart");
+		viewpic.setTresource(processmanager);
+		resourceDao.saveOrUpdate(viewpic);
+		
+		//请假单
+		Tresource grid=new Tresource();
+		grid.setId("grid");
+		grid.setName("请假单");
+		grid.setTresourcetype(funType);
+		grid.setUrl("/leaveBillController/datagrid");
+		grid.setSeq(1);
+		grid.setIcon("server_chart");
+		grid.setTresource(processmanager);
+		resourceDao.saveOrUpdate(grid);
+		
+		//个人流程开始
+		Tresource start=new Tresource();
+		start.setId("start");
+		start.setName("个人流程开始");
+		start.setTresourcetype(funType);
+		start.setUrl("/personalProcessController/startprocess");
+		start.setSeq(1);
+		start.setIcon("server_chart");
+		start.setTresource(processmanager);
+		resourceDao.saveOrUpdate(start);
+		
+		//查看
+		Tresource view=new Tresource();
+		view.setId("view");
+		view.setName("查看");
+		view.setTresourcetype(funType);
+		view.setUrl("/leaveBillController/view");
+		view.setSeq(1);
+		view.setIcon("server_chart");
+		view.setTresource(processmanager);
+		resourceDao.saveOrUpdate(view);
+		
+		/**@author fydor
+		 */
+		//编辑
+		Tresource eidt=new Tresource();
+		eidt.setId("eidt");
+		eidt.setName("编辑");
+		eidt.setTresourcetype(funType);
+		eidt.setUrl("/leaveBillController/edit");
+		eidt.setSeq(1);
+		eidt.setIcon("server_chart");
+		eidt.setTresource(processmanager);
+		resourceDao.saveOrUpdate(eidt);
+		
+		//编辑页面
+		Tresource eidtpage=new Tresource();
+		eidtpage.setId("eidtpage");
+		eidtpage.setName("编辑页面");
+		eidtpage.setTresourcetype(funType);
+		eidtpage.setUrl("/leaveBillController/editPage");
+		eidtpage.setSeq(1);
+		eidtpage.setIcon("server_chart");
+		eidtpage.setTresource(processmanager);
+		resourceDao.saveOrUpdate(eidtpage);
+		
+		
+		/**自定义流程*/
+		
+		Tresource zdy=new Tresource();
+		zdy.setId("zdy");
+		zdy.setName("自定义流程");
+		zdy.setTresourcetype(menuType);
+		zdy.setUrl("http://www.jq22.com/demo/activiti-designer-master20150902/wf/designer");
+		zdy.setSeq(1);
+		zdy.setIcon("server_chart");
+		zdy.setTresource(processtTresource);
+		resourceDao.saveOrUpdate(zdy);
+		
+		/**任务查询*/
+		Tresource taskpage=new Tresource();
+		taskpage.setId("taskpage");
+		taskpage.setName("任务查询");
+		taskpage.setTresourcetype(menuType);
+		taskpage.setUrl("/personalProcessController/taskPage");
+		taskpage.setSeq(1);
+		taskpage.setIcon("server_chart");
+		taskpage.setTresource(processtTresource);
+		resourceDao.saveOrUpdate(taskpage);
+		
+		//办理任务
+		Tresource editpage=new Tresource();
+		editpage.setId("editpage");
+		editpage.setName("办理任务");
+		editpage.setTresourcetype(funType);
+		editpage.setUrl("/personalProcessController/taskEditPage");
+		editpage.setSeq(1);
+		editpage.setIcon("server_chart");
+		editpage.setTresource(taskpage);
+		resourceDao.saveOrUpdate(editpage);
+		
+		//准备办理任务
+		Tresource taskHandlpage=new Tresource();
+		taskHandlpage.setId("taskHandlpage");
+		taskHandlpage.setName("准备办理任务");
+		taskHandlpage.setTresourcetype(funType);
+		taskHandlpage.setUrl("/personalProcessController/taskHandleReady");
+		taskHandlpage.setSeq(1);
+		taskHandlpage.setIcon("server_chart");
+		taskHandlpage.setTresource(taskpage);
+		resourceDao.saveOrUpdate(taskHandlpage);
+		
+		//提交办理任务
+		Tresource submittaskHandlpage=new Tresource();
+		submittaskHandlpage.setId("submittaskHandlpage");
+		submittaskHandlpage.setName("提交办理任务");
+		submittaskHandlpage.setTresourcetype(funType);
+		submittaskHandlpage.setUrl("/personalProcessController/submitTtask");
+		submittaskHandlpage.setSeq(1);
+		submittaskHandlpage.setIcon("server_chart");
+		submittaskHandlpage.setTresource(taskpage);
+		resourceDao.saveOrUpdate(submittaskHandlpage);
+		
+		//任务查询
+		Tresource task=new Tresource();
+		task.setId("task");
+		task.setName("任务查询");
+		task.setTresourcetype(funType);
+		task.setUrl("/personalProcessController/task");
+		task.setSeq(1);
+		task.setIcon("server_chart");
+		task.setTresource(taskpage);
+		resourceDao.saveOrUpdate(task);
+		
+		/**流程图片	*/
+		Tresource taskPic=new Tresource();
+		taskPic.setId("taskPic");
+		taskPic.setName("流程图片");
+		taskPic.setTresourcetype(funType);
+		taskPic.setUrl("/processController/searchProcessPicPage");
+		taskPic.setSeq(1);
+		taskPic.setIcon("server_chart");
+		taskPic.setTresource(taskpage);
+		resourceDao.saveOrUpdate(taskPic);
 		
 		
 		Tresource jeasyuiApi = new Tresource();

@@ -39,6 +39,18 @@
 					<th>登录名称</th>
 					<td><input name="name" type="text" placeholder="请输入登录名称" class="easyui-validatebox span2" data-options="required:true" value="${user.name}"></td>
 				</tr>
+				<tr>
+					<th>管理人名称</th>
+					<td>
+						<select name="managerId"  >
+							<c:forEach  var="tuser" items="${userList }">
+								${user.managerId}..${tuser.manager.id}
+								<option value="${tuser.id }" <c:if test="${user.managerId eq tuser.manager.id}"> selected="selected"</c:if>> ${tuser.name }</option>
+							</c:forEach>
+						</select>
+						
+					</td>
+				</tr>
 			</table>
 		</form>
 	</div>

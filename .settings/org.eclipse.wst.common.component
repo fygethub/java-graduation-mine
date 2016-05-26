@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="sypro_1">
+    <wb-module deploy-name="fyGraduation">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
-        <property name="context-root" value="sypro_1"/>
-        <property name="java-output-path" value="/sypro_1/target/classes"/>
+        <property name="context-root" value="fyGraduation"/>
+        <property name="java-output-path" value="/fyGraduation/target/classes"/>
     </wb-module>
 </project-modules>

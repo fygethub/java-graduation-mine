@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import sy.model.Tuser;
 import sy.pageModel.DataGrid;
 import sy.pageModel.Json;
 import sy.pageModel.PageHelper;
@@ -183,6 +184,8 @@ public class UserController extends BaseController {
 	public String editPage(HttpServletRequest request, String id) {
 		User u = userService.get(id);
 		request.setAttribute("user", u);
+		List<Tuser> tusers=userService.getListUser();
+		request.setAttribute("userList", tusers);
 		return "/admin/userEdit";
 	}
 

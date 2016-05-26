@@ -126,6 +126,14 @@ public class PersonalProcessController {
 		return json;
 	}
 	
-	
+	@RequestMapping("/handleViewPage")
+	public String  handleViewPage(String id,HttpSession session){
+		 PageLeaveBill pageLeaveBill=leaveBillServiceI.findpageLeaveBillById(id);
+		 session.setAttribute("pageLeaveBill", pageLeaveBill);
+		 //使用请假单ID查询历史批注信息
+		 List<Comment> commentList	= workflowServiceI.findCommentByLeaveBillId(id);
+		 session.setAttribute("commentList", commentList);
+		 return "/activity/LeaveBillHandleView";
+	}
 	
 }

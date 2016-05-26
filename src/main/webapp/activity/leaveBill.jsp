@@ -33,18 +33,25 @@
 		          {field:'days',title:'请假天数',width:100},
 		          {field:'content',title:'请假内容',width:100},
 		          {field:'leaveDate',title:'请假时间',width:100,formatter:function(value,row,index){
-		        	  /* var time= new Date(row.leaveDate);
+		        	  var time= new Date(row.leaveDate);
 		        	  var year=time.getFullYear();
-		        	  var month=time.getMonth();
+		        	  var month=time.getMonth()+1;
 		        	  var day=time.getDay();
 		        	  var hour=time.getHours();
+		        	  if(hour <= 9){
+		        		  hour = "0" +hour;
+		        	  }
 		        	  var min=time.getMinutes();
-		        	  var sec=time.getSeconds();
-		        	  if(hour < 10)
-		        		  hour='0'+hour;
 		        	  
-		        	  return year+"/"+month+"/"+day+" "+hour+":"+min+":"+sec; */
-		        	  return new Date(row.leaveDate);
+		        	  if(min <= 9){
+		        		  min = "0" +min;
+		        	  }
+		        	  var sec=time.getSeconds();
+		        	  if(sec < 10)
+		        		  sec='0'+sec;
+		        	  
+		        	  return year+"/"+month+"/"+day+" "+hour+":"+min+":"+sec; 
+		        	 // return new Date(row.leaveDate);
 		          }},
 		          {field:'remark',title:'备注',width:100,hidden:true},
 		         
@@ -53,7 +60,9 @@
 		        		  return '待提交';
 		        	  if(row.state == '1')
 		        		return '正在审批';  
-		        	  
+		        	  if(row.state == '2'){
+		        		  return '审批完成';
+		        	  }
 		        	  
 		          }},
 		          {field:'cz',title:'操作',width:100,
@@ -69,6 +78,9 @@
 							str += $.formatString('<a onclick="startFun(\'{0}\');">提交申请</a>',row.id);
 		        		}
 		        		if(row.state == '1'){
+		        			str += $.formatString('<a onclick="approvalFun(\'{0}\');">查看审批</a>', row.id);
+		        		}
+		        		if(row.state == '2'){
 		        			str += $.formatString('<a onclick="approvalFun(\'{0}\');">查看审批</a>', row.id);
 		        		}
 		        		return str;
@@ -205,16 +217,12 @@
 	
 	/**approvalFun*/
 	function approvalFun(id){
-		parent.$.messager.progress('close');
-		$.post('${pageContext.request.contextPath}/',{
-			id:id
-		}, function(result) {
-			if (result.success) {
-				parent.$.messager.alert('提示', result.msg, 'info');
-				datagrid.datagrid('reload');
-			}
-			parent.$.messager.progress('close');
-		}, 'JSON');
+			parent.$.modalDialog({
+				title:'查看请假单',
+				width:780,
+				height:500,
+				href:'${pageContext.request.contextPath}/personalProcessController/handleViewPage?id=' + id,
+			});
 	}
 	
 </script>

@@ -12,7 +12,9 @@ public class PageHelper implements java.io.Serializable {
 	private int rows;// 每页显示记录数
 	private String sort;// 排序字段
 	private String order;// asc/desc
-
+	private String search;
+	
+	
 	public int getPage() {
 		return page;
 	}
@@ -43,6 +45,14 @@ public class PageHelper implements java.io.Serializable {
 
 	public void setOrder(String order) {
 		this.order = order;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
 	}
 
 }

@@ -12,6 +12,8 @@ import org.activiti.engine.task.Comment;
 import org.activiti.engine.task.Task;
 
 import sy.pageModel.DataGrid;
+import sy.pageModel.PageHelper;
+import sy.pageModel.SessionInfo;
 import sy.pageModel.activiti.PageLeaveBill;
 import sy.pageModel.activiti.ProcessDefineModel;
 import sy.pageModel.activiti.ProcessDeployModel;
@@ -45,11 +47,12 @@ public interface WorkflowServiceI {
 
 	List<Comment> findCommentByTaskId(String taskId);
 
-	List<Comment> findCommentByLeaveBillId(Long id);
+	List<Comment> findCommentByLeaveBillId(String id);
 
 	ProcessDefinition findProcessDefinitionByTaskId(String taskId);
 
 	Map<String, Object> findCoordingByTask(String taskId);
+	DataGrid findHistoryDefineByUser(SessionInfo sessionInfo, PageHelper ph);
 	
 	
 	

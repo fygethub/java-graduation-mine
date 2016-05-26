@@ -66,7 +66,7 @@
 		parent.$.modalDialog({
 			title : '修改密码',
 			width : 300,
-			height : 250,
+			height : 300,
 			href : '${pageContext.request.contextPath}/userController/editCurrentUserPwdPage',
 			buttons : [ {
 				text : '修改',
@@ -81,7 +81,7 @@
 		parent.$.modalDialog({
 			title : '我的角色',
 			width : 300,
-			height : 250,
+			height : 300,
 			href : '${pageContext.request.contextPath}/userController/currentUserRolePage'
 		});
 	}
@@ -89,11 +89,12 @@
 		parent.$.modalDialog({
 			title : '我可以访问的资源',
 			width : 300,
-			height : 250,
+			height : 300,
 			href : '${pageContext.request.contextPath}/userController/currentUserResourcePage'
 		});
 	}
 </script>
+<div  style="width:100%;height:100%;background-repeat: no-repeat;   background:url(${pageContext.request.contextPath}/style/images/bg.jpg); background-attachment:fixed; background-position:0px 633px;"></div>
 <div id="sessionInfoDiv" style="position: absolute; right: 0px; top: 0px;" class="alert alert-info">
 	<c:if test="${sessionInfo.id != null}">[<strong>${sessionInfo.name}</strong>]，欢迎你！您使用[<strong>${sessionInfo.ip}</strong>]IP登录！</c:if>
 </div>

@@ -7,9 +7,11 @@ public class User implements java.io.Serializable {
 	private String id;
 	private String name;
 	private String pwd;
+	private String managerId ;
+	private String managerName;
 	private Date createdatetime;
 	private Date modifydatetime;
-
+	
 	private Date createdatetimeStart;
 	private Date createdatetimeEnd;
 	private Date modifydatetimeStart;
@@ -116,6 +118,22 @@ public class User implements java.io.Serializable {
 				+ modifydatetimeStart + ", modifydatetimeEnd="
 				+ modifydatetimeEnd + ", roleIds=" + roleIds + ", roleNames="
 				+ roleNames + "]";
+	}
+
+	public String getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(String managerId) {
+		this.managerId = managerId;
+	}
+
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
 	}
 
 }

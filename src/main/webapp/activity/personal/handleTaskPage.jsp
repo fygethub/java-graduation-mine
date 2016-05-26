@@ -83,3 +83,8 @@
 			</form>
 	  </div>
 </div>
+<div id="tb">
+		<c:forEach var="outString" items="${outStrings }">
+			<a onclick="outcomeFun('${outString}')" class="easyui-linkbutton" data-options="plain:false">${outString}</a>
+		</c:forEach>
+</div>

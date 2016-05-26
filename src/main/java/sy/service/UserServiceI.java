@@ -2,6 +2,7 @@ package sy.service;
 
 import java.util.List;
 
+import sy.model.Tuser;
 import sy.pageModel.DataGrid;
 import sy.pageModel.PageHelper;
 import sy.pageModel.SessionInfo;
@@ -129,5 +130,7 @@ public interface UserServiceI {
 	 * @return
 	 */
 	public List<Long> userCreateDatetimeChart();
+
+	public List<Tuser> getListUser();
 
 }

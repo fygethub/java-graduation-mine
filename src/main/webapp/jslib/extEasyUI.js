@@ -378,6 +378,10 @@ $.modalDialog = function(options) {
 					title : '提示',
 					text : '数据处理中，请稍后....'
 				});
+			},
+			onLoad:function(){
+				parent.$.messager.progress('close');
+				
 			}
 		}, options);
 		opts.modal = true;// 强制此dialog为模式化，无视传递过来的modal参数

@@ -46,12 +46,14 @@
 	});
 
 	function fileManage() {
+		
 		editor.loadPlugin('filemanager', function() {
 			editor.plugin.filemanagerDialog({
 				viewType : 'VIEW',
 				dirName : 'image',
 				clickFn : function(url, title) {
 					//KindEditor('#url').val(url);
+					console.log(url);
 					editor.insertHtml($.formatString('<img src="{0}" alt="" />', url));
 					editor.hideDialog();
 				}

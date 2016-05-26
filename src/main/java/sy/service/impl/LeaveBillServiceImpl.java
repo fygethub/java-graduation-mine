@@ -151,6 +151,7 @@ public class LeaveBillServiceImpl implements LeaveBillServiceI{
 			BeanUtils.copyProperties(pageLeaveBill, leaveBill,new String[]{"remark","user","leaveDate"});
 			leaveBill.setRemark(ClobUtil.getClob(pageLeaveBill.getRemark()));
 			leaveBill.setLeaveDate(new Date());
+			leaveBillDaoI.save(leaveBill);
 		}
 	}
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.activiti.engine.repository.ProcessDefinition;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import sy.pageModel.activiti.ProcessDefineModel;
 import sy.pageModel.activiti.ProcessDeployModel;
@@ -51,8 +53,6 @@ public class DefineProcessController {
 		System.out.println("mulType"+commonsMultipartFile.getOriginalFilename());
 		DiskFileItem diskFileIte=(DiskFileItem)commonsMultipartFile.getFileItem();
 		File file=diskFileIte.getStoreLocation();
-		System.out.println(file.getName());
-		System.out.println(deployfile.getName());
 		if(commonsMultipartFile.getOriginalFilename().split("\\.")[1].equals("zip")){
 			workflowServiceI.saveNewDeploye(file, processName);
 			return "success";
@@ -119,6 +119,24 @@ public class DefineProcessController {
 	}
 	
 	
+	/**查看当前的流程图,查看活动的节点*/
+	@RequestMapping("/searchProcessPicPage")
+	@ResponseBody
+	public ModelAndView searchProcessPic(String id,HttpSession session){
+		
+		//使用任务id获取任务对象，通过任务对象获取流程实例id，通过流程实例id获取流程实例对象
+		ProcessDefinition pDefinition=workflowServiceI.findProcessDefinitionByTaskId(id);
+		
+		session.setAttribute("deploymentId", pDefinition.getDeploymentId());
+		session.setAttribute("imageName", pDefinition.getDiagramResourceName());
+	
+		Map<String , Object> map =workflowServiceI.findCoordingByTask(id);
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("/activity/personal/image");
+		modelAndView.addObject("map", map);
+		return modelAndView;
+	}
+	
 	/**
 	 * 查看流程图
 	 * @throws IOException 
@@ -126,10 +144,12 @@ public class DefineProcessController {
 	@RequestMapping("/searchProcessPic")
 	public String searchProcessPic(HttpServletRequest request,HttpServletResponse response,String id,String name){
 	
-		//获取资源文件
+		//通过流程实例id获取资源文件
 		InputStream inputStream=workflowServiceI.findImageInputStream(id.trim(), name.trim());
 		OutputStream outputStream;
 		try {
+			response.setContentType("image/png");
+			response.setHeader("Cache-control", "no-cache ");
 			outputStream = response.getOutputStream();
 			for(int b=-1;(b=inputStream.read())!=-1;){
 				outputStream.write(b);

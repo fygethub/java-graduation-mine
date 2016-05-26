@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
@@ -8,37 +8,42 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>上传文件</title>
 <jsp:include page="../../inc.jsp"></jsp:include>
- 
-<style type="text/css">
-*{margin:0;padding:0;}
-body{font-size:12px;font-family:"微软雅黑";color:#ccc;
-.box{width:400px;height:200px;border:1px solid red;margin:100px auto;padding:20px 300px;}
-h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
-.box .selectBtn{width:200px;height:40px;border-radius:5px;font-size:30px;}
-</style>
 </head>
 <body>
-		<div style="height:340px;">
-			<table id="deploytable">
-			</table>
+		<!-- <div style="height:200px;">
+			<table id="deploytable"></table>
 		</div>
 		<div >
 			<table id="definetable"></table>
+		</div> -->
+				 <c:if test="${fn:contains(sessionInfo.resourceList, '/processController/upload')}"> 
+					
+				</c:if>
+<div id="aa" class="easyui-accordion" style="height:450px;">   
+    <div title="流程部署信息" data-options="iconCls:'icon-save'" style="overflow:auto;padding:10px;">  
+    	<table id="deploytable"></table> 
+    </div>   
+    <div title="流程定义信息" data-options="iconCls:'icon-reload',selected:true" style="padding:10px;">   
+       <table id="definetable"></table> 
+    </div>   
+    <div title="流程部署">   
+        <div  style="width:400px;height:200px;border:1px solid red;margin:10px auto;border-radius:5px;padding-left: 10px;">
+						<form id="upload_form" method="post" enctype="multipart/form-data">
+								<h1 style="color:maroon;margin-left:50px;">流程部署</h1>
+								<div  style="color:#000;">工件名：<input name="processName"></div>
+								<div style="margin-top:10px; " > <span style="color:#000;">选择文件：</span><input type="file" name=deployfile></div>
+								<div style="padding-left:150px ;"><button  class="btn btn-primary" style="width:100px;height:30px;border-radius:5px;" onclick="upload_pro()">提交</button></div>
+			</form>
 		</div>
-	<div class="box">
-		<form id="upload_form" method="post" enctype="multipart/form-data">
-			<h1>excel资料上传	</h1>
-			<table>
-				<tr><td>工件名：<input name="processName"></td></tr>
-				<tr><td><input type="file" name=deployfile></td></tr>
-				<tr><td><button onclick="upload_pro()">提交</button></td></tr>
-			</table>
-		</form>
-	</div>
+    </div>   
+</div>  		
+
+	
 <script type="text/javascript">	
 	var deployGrid;
 	var defineGrid;
 	$(document).ready(function(){
+	
 		deployGrid = $('#deploytable').datagrid({
 			url:'${pageContext.request.contextPath}/processController/processdeployList',
 			fit : true,
@@ -48,7 +53,7 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 			idField : 'id',
 			pageSize : 10,
 			pageList : [ 10, 20, 30, 40, 50 ],
-			sortName : 'deploymentTime',
+			sortName : 'createdatetime',
 			sortOrder : 'desc',
 			checkOnSelect : false,
 			selectOnCheck : false,
@@ -56,22 +61,16 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 			striped : true,
 			rownumbers : true,
 			singleSelect : true,
-			columns : [ [ 
-	                {field:'id',title:'ID',width:100},
+			columns : [ [
+		            {field:'id',title:'ID',width:100},
 					{field:'name',title:'流程名称',width:100},
 					{field:'deploymentTime',title:'发布时间',width:100,
-						formatter:function(value,row,index){
-							var time=new Date(value);
-							console.log(time);
-							return time;
+						formatter:function(value, row, index){
+							var date=new Date(value);
+							
+							return date.toLocaleDateString() +" "+date.toTimeString().split(" ")[0];
 						}},
-					/* {field:'cz',title:'操作',width:100,formatter:function(value,row,index){
-						var str="";
-						str+=$.formatString("<a href='' onclick=deleteFun_deploy({0})>删除</a>",row.id);
-						return  str;
-						
-					}}, */
-			] ],
+			            ] ],
 			toolbar : '#toolbar',
 			onLoadSuccess : function() {
 				$('#searchForm table').show();
@@ -89,9 +88,12 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 				});
 			}
 		});
+		/**........................................*/
 		defineGrid=$("#definetable").datagrid({
 				url:'${pageContext.request.contextPath}/processController/processDefineList',
 				title:'流程定义信息列表',
+				fit : true,
+				fitColumns : true,
 				pagination:true,
 				rownumbers:true,
 				nowrap:true,
@@ -111,7 +113,7 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 						var str="";
 						str += $.formatString('<img onclick="deleteFun({0});" src="{1}" title="删除"/>', row.deploymentId, '${pageContext.request.contextPath}/style/images/extjs_icons/cancel.png');
 						str += '&nbsp';
-						str += $.formatString('<a target="_blank" href="${pageContext.request.contextPath}/processController/searchProcessPic?id={0}&name={1}">查看流程图</a>',row.deploymentId,row.diagramResourceName);
+						str += $.formatString('<a target="_black" href="${pageContext.request.contextPath}/processController/searchProcessPic?id={0}&name={1}"> 查看流程图</a>',row.deploymentId,row.diagramResourceName);
 						return str;	
 						}
 					},
@@ -134,7 +136,8 @@ h1{font-size:30px;color:#6d4242;text-shadow:5px 5px 10px #111;}
 				}
 			});
 		});
-
+	
+	
 	
 	/**删除流程定义*/
 	function deleteFun(id){

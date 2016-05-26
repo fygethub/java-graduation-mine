@@ -14,8 +14,9 @@ public class ProcessDefine {
 				.createDeployment()
 				// 创建一个部署对象
 				.name("FyProcess")
-				.addClasspathResource("diagrams/FyProcess.bpmn")// 从classpath的资源总加载
-				.addClasspathResource("diagrams/FyProcess.png").deploy();
+				.addClasspathResource("diagrams/leave.bpmn")// 从classpath的资源总加载
+				//.addClasspathResource("diagrams/FyProcess.png")
+				.deploy();
 
 		System.out.println("部署" + deployment.getId());
 		System.out.println("部署名称" + deployment.getName());

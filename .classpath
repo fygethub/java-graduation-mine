@@ -18,23 +18,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry including="**/*.java" kind="src" path="src/test/resources"/>
-	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.web"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activation-1.1.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-bpmn-converter-5.13.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-bpmn-layout-5.13.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-bpmn-model-5.13.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-common-rest-5.13.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-engine-5.13.jar" sourcepath="D:/学习/activiti工作流/activiti工作流/activiti资料/install/activiti-5.13/libs/activiti-engine-5.13-sources.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-engine-5.13.jar" sourcepath="F:/传智播客_Activiti工作流视频（企业开发实例讲解）/activiti工作流/activiti工作流/activiti资料/install/activiti-5.13/libs/activiti-engine-5.13-sources.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-json-converter-5.13.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-rest-5.13.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/activiti-simple-workflow-5.13.jar"/>
@@ -74,9 +63,15 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-jdbc-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-orm-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/spring-tx-3.1.2.RELEASE.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.7.0_60">
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

@@ -6,7 +6,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jslib/extBrowser.js" charset="utf-8"></script>
 
 <!-- 引入my97日期时间控件 -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/My97DatePicker4.8b3/My97DatePicker/WdatePicker.js" charset="utf-8"></script>
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/jslib/My97DatePicker4.8b3/My97DatePicker/WdatePicker.js" charset="utf-8"></script> --%>
 
 <!-- 引入kindEditor插件 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/jslib/kindeditor-4.1.7/themes/default/default.css">
