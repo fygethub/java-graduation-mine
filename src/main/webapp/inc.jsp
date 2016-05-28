@@ -37,10 +37,10 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jslib/jquery-easyui-portal/jquery.portal.js" charset="utf-8"></script>
 
 <!-- 扩展EasyUI -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/extEasyUI.js?v=201305241044" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/extEasyUI.js" charset="utf-8"></script>
 
 <!-- 扩展EasyUI Icon -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/style/extEasyUIIcon.css?v=201305301906" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/style/extEasyUIIcon.css" type="text/css">
 
 <!-- 扩展jQuery -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/extJquery.js?v=201305301341" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/jslib/extJquery.js" charset="utf-8"></script>
